@@ -14,52 +14,24 @@ public class Main {
         double rf = 0.05;
         double m = 7000;
         double z = 0 ;*/
+        // Uvítacie privítanie
+        System.out.println("Vitajte v programe na vyhodnotenie podmienok investícií do akcii a dlhopisov.");
+        System.out.println("Po stlačení Enter začnite zadávať hodnoty.");
         Scanner scanner = new Scanner(System.in);
+        // Čakanie na stlačenie Enter
+        scanner.nextLine();
 
-        System.out.println("Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
-        double aH_initial = scanner.nextDouble();
 
-        System.out.println("Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
-        double bH_initial = scanner.nextDouble();
+        double aH_initial = validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
+        double bH_initial = validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
+        double aH = validaciaVstupov(scanner, "Zadajte hodnotu premennej aH:");
+        double aD = validaciaVstupov(scanner, "Zadajte hodnotu premennej aD:");
+        double bH = validaciaVstupov(scanner, "Zadajte hodnotu premennej bH:");
+        double bD = validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:");
+        double rf = validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:");
+        double m = validaciaVstupov(scanner, "Zadajte hodnotu premennej m:");
 
-        System.out.println("Zadajte hodnotu akcie Ah:");
-        double aH = scanner.nextDouble();
-
-        System.out.println("Zadajte hodnotu akcie Ad:");
-        double aD = scanner.nextDouble();
-
-        System.out.println("Zadajte hodnotu akcie Bh:");
-        double bH = scanner.nextDouble();
-
-        System.out.println("Zadajte hodnotu akcie Bd:");
-        double bD = scanner.nextDouble();
-
-        System.out.println("Zadajte hodnotu bezrizikovej mierky:");
-        double rf = scanner.nextDouble();
-
-        System.out.println("Zadajte hodnotu počiatočného imania:");
-        double m = scanner.nextDouble();
-
-        System.out.println("Zadajte hodnotu z:");
-        double z = scanner.nextDouble();
-
-        // Kontrola podmienok
-        if (aH > 1 + rf && 1 + rf > 1 && 1 > aD && bH < 1 && 1 < 1 + rf && 1 + rf < bD) {
-            // Akcia pre podmienku 1
-            System.out.println("Podmienka 1 bola splnená. Vykonávam akciu pre podmienku 1.");
-        } else if (aH < 1 && 1 < 1 + rf && 1 + rf < aD && bH > 1 + rf && 1 + rf > 1 && 1 > bD) {
-            // Akcia pre podmienku 2
-            System.out.println("Podmienka 2 bola splnená. Vykonávam akciu pre podmienku 2.");
-        } else if (aH > 1 + rf && 1 + rf > 1 && 1 > aD && bH > 1 + rf && 1 + rf > 1 && 1 > bD) {
-            // Akcia pre podmienku 3
-            System.out.println("Podmienka 3 bola splnená. Vykonávam akciu pre podmienku 3.");
-        } else if (aH < 1 && 1 < 1 + rf && 1 + rf < aD && bH < 1 && 1 < 1 + rf && 1 + rf < bD) {
-            // Akcia pre podmienku 4
-            System.out.println("Podmienka 4 bola splnená. Vykonávam akciu pre podmienku 4.");
-        } else {
-            // Žiadna podmienka nebola splnená
-            System.out.println("Nie je možné vykonať žiadnu akciu.");
-        }
+        kontrolaPodmienok(aH, aD, bH, bD, rf);
         //premene s ktorymi pracuje program
         double x ,y,zX=1,zY=1 ,x2 , y2;
 
@@ -146,5 +118,40 @@ public class Main {
         }
 
 
+    }
+    private static double validaciaVstupov(Scanner scanner, String message) {
+        double input;
+        do {
+            System.out.println(message);
+            input = scanner.nextDouble();
+
+            if (input < 0) {
+                System.out.println("Hodnota nemôže byť záporná. Zadajte ju znova.");
+            }
+        } while (input < 0);
+        return input;
+    }
+    private static void kontrolaPodmienok(double aH, double aD, double bH, double bD, double rf) {
+        // Kontrola podmienok
+        if ((aH > 1 + rf && 1 + rf > 1 && 1 > aD && bH < 1 && 1 < 1 + rf && 1 + rf < bD) &&
+                (aH != aD && bH != bD)) {
+            // Akcia pre podmienku 1
+            System.out.println("Podmienka 1 bola splnená. Vykonávam akciu pre podmienku 1.");
+        } else if ((aH < 1 && 1 < 1 + rf && 1 + rf < aD && bH > 1 + rf && 1 + rf > 1 && 1 > bD) &&
+                (aH != aD && bH != bD)) {
+            // Akcia pre podmienku 2
+            System.out.println("Podmienka 2 bola splnená. Vykonávam akciu pre podmienku 2.");
+        } else if ((aH > 1 + rf && 1 + rf > 1 && 1 > aD && bH > 1 + rf && 1 + rf > 1 && 1 > bD) &&
+                (aH != aD && bH != bD)) {
+            // Akcia pre podmienku 3
+            System.out.println("Podmienka 3 bola splnená. Vykonávam akciu pre podmienku 3.");
+        } else if ((aH < 1 && 1 < 1 + rf && 1 + rf < aD && bH < 1 && 1 < 1 + rf && 1 + rf < bD) &&
+                (aH != aD && bH != bD)) {
+            // Akcia pre podmienku 4
+            System.out.println("Podmienka 4 bola splnená. Vykonávam akciu pre podmienku 4.");
+        } else {
+            // Žiadna podmienka nebola splnená
+            System.out.println("Nie je možné vykonať žiadnu akciu.");
+        }
     }
 }
