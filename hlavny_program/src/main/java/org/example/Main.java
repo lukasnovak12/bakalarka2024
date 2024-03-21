@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //vstupne premene
-        double aH_initial = 20.0;
+       /* double aH_initial = 20.0;
         double bH_initial = 50.0;
         double aH = 24;
         double aD = 16;
@@ -13,10 +13,10 @@ public class Main {
         double bD = 55;
         double rf = 0.05;
         double m = 7000;
-        double z = 0 ;
-        //Scanner scanner = new Scanner(System.in);
+        double z = 0 ;*/
+        Scanner scanner = new Scanner(System.in);
 
-        /*System.out.println("Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
+        System.out.println("Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
         double aH_initial = scanner.nextDouble();
 
         System.out.println("Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
@@ -43,7 +43,23 @@ public class Main {
         System.out.println("Zadajte hodnotu z:");
         double z = scanner.nextDouble();
 
-         */
+        // Kontrola podmienok
+        if (aH > 1 + rf && 1 + rf > 1 && 1 > aD && bH < 1 && 1 < 1 + rf && 1 + rf < bD) {
+            // Akcia pre podmienku 1
+            System.out.println("Podmienka 1 bola splnená. Vykonávam akciu pre podmienku 1.");
+        } else if (aH < 1 && 1 < 1 + rf && 1 + rf < aD && bH > 1 + rf && 1 + rf > 1 && 1 > bD) {
+            // Akcia pre podmienku 2
+            System.out.println("Podmienka 2 bola splnená. Vykonávam akciu pre podmienku 2.");
+        } else if (aH > 1 + rf && 1 + rf > 1 && 1 > aD && bH > 1 + rf && 1 + rf > 1 && 1 > bD) {
+            // Akcia pre podmienku 3
+            System.out.println("Podmienka 3 bola splnená. Vykonávam akciu pre podmienku 3.");
+        } else if (aH < 1 && 1 < 1 + rf && 1 + rf < aD && bH < 1 && 1 < 1 + rf && 1 + rf < bD) {
+            // Akcia pre podmienku 4
+            System.out.println("Podmienka 4 bola splnená. Vykonávam akciu pre podmienku 4.");
+        } else {
+            // Žiadna podmienka nebola splnená
+            System.out.println("Nie je možné vykonať žiadnu akciu.");
+        }
         //premene s ktorymi pracuje program
         double x ,y,zX=1,zY=1 ,x2 , y2;
 
