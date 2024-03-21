@@ -30,6 +30,9 @@ public class Main {
         double bD = validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:");
         double rf = validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:");
         double m = validaciaVstupov(scanner, "Zadajte hodnotu premennej m:");
+        double y0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej y0:");
+        double x0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej x0:");
+        double z0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej z0:");
 
         kontrolaPodmienok(aH, aD, bH, bD, rf);
         //premene s ktorymi pracuje program
@@ -116,6 +119,7 @@ public class Main {
                     "preto sa investori snažia všetky dostupné finančné prostriedky investovať do ná-\n" +
                     "kupu dlhopisov.");
         }
+            Zopt.vypocetZOpt(xPom,x0,y0,m,z0,rf,aH,bH);
 
 
     }
