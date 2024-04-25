@@ -49,7 +49,7 @@ public class Main {
 
         System.out.println("Výsledok: " + x2);
         System.out.println("Výsledok: " + y2);
-        double xPom = ( (y2 - y) / (x - x2) + (y2 - y)); // pomocna premena pri overovani ci je k nerovna -1
+        double xPom = ( (bD - bH) / (aH - aD)); // pomocna premena pri overovani ci je k nerovna -1 opravene
         if(xPom  == -1){
             System.out.println("Ak sa k = -1 znamená to , že x + y = 0 ,z = m . X a Y nevieme z rovníc vyjadriť. " +
                     "Preto z ide do + "+'\u221E');
