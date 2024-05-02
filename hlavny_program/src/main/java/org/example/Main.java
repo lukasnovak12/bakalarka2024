@@ -30,9 +30,12 @@ public class Main {
         double bD = validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:");
         double rf = validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:");
         double m = validaciaVstupov(scanner, "Zadajte hodnotu premennej m:");
-        double y0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej y0:");
-        double x0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej x0:");
-        double z0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej z0:");
+        System.out.println("Zadajte hodnotu premennej y0:");
+        double y0 = scanner.nextDouble();
+        System.out.println("Zadajte hodnotu premennej x0:");
+        double x0 = scanner.nextDouble();
+        System.out.println("Zadajte hodnotu premennej z0:");
+        double z0 = scanner.nextDouble();
 
         kontrolaPodmienok(aH, aD, bH, bD, rf);
         //premene s ktorymi pracuje program
@@ -71,7 +74,7 @@ public class Main {
 
             //zbytok vypoctov pre y
         y=y*m;
-
+        //zaokruhlenie pre y*m (vysledok 4/7 * 7000 bolo 3999,99) preto to zaokruhlenie na cele cislo
         y=Math.round(y);
             //pre x
 
@@ -119,7 +122,7 @@ public class Main {
                     "preto sa investori snažia všetky dostupné finančné prostriedky investovať do ná-\n" +
                     "kupu dlhopisov.");
         }
-            Zopt.vypocetZOpt(xPom,x0,y0,m,z0,rf,aH,bH);
+            Zopt.vypocetZOpt(xPom,j,x0,y0,m,z0,rf,aH,bH);
 
 
     }
@@ -155,7 +158,7 @@ public class Main {
             System.out.println("Podmienka 4 bola splnená. Vykonávam akciu pre podmienku 4.");
         } else {
             // Žiadna podmienka nebola splnená
-            System.out.println("Nie je možné vykonať žiadnu akciu.");
+            System.out.println("Nie je možné vykonať žiadnu akciu(ziadna z podmienok nebola splnena).");
         }
     }
 }
