@@ -5,18 +5,18 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //vstupne premene
-        double aH_initial = 20.0;
-        double bH_initial = 50.0;
-        double aH = 16;
-        double aD = 24;
-        double bH = 45;
-        double bD = 60;
-        double rf = 0.06;
-        double m = 10000;
+        double aPociatok = 0;
+        double bPociatok = 0;
+        double aH = 0;
+        double aD = 0;
+        double bH = 0;
+        double bD = 0;
+        double rf = 0;
+        double m = 0;
         double z = 0 ;
-        double x0 = 100;
-        double y0 = 200;
-        double z0 = 300;
+        double x0 = 0;
+        double y0 = 0;
+        double z0 = 0;
         // Uvítacie privítanie
         System.out.println("Vitajte v programe na vyhodnotenie podmienok investícií do akcii a dlhopisov.");
         System.out.println("Po stlačení Enter začnite zadávať hodnoty.");
@@ -25,23 +25,20 @@ public class Main {
         scanner.nextLine();
 
 
-        /*double aH_initial = validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
-        double bH_initial = validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
-        double aH = validaciaVstupov(scanner, "Zadajte hodnotu premennej aH:");
-        double aD = validaciaVstupov(scanner, "Zadajte hodnotu premennej aD:");
-        double bH = validaciaVstupov(scanner, "Zadajte hodnotu premennej bH:");
-        double bD = validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:");
-        double rf = validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:");
-        double m = validaciaVstupov(scanner, "Zadajte hodnotu premennej m:");
-        System.out.println("Zadajte hodnotu premennej y0:");
-        double y0 = scanner.nextDouble();
-        System.out.println("Zadajte hodnotu premennej x0:");
-        double x0 = scanner.nextDouble();
-        System.out.println("Zadajte hodnotu premennej z0:");
-        double z0 = scanner.nextDouble();
+        aPociatok = validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
+        bPociatok = validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
+        aH = validaciaVstupov(scanner, "Zadajte hodnotu premennej aH:");
+        aD = validaciaVstupov(scanner, "Zadajte hodnotu premennej aD:");
+        bH = validaciaVstupov(scanner, "Zadajte hodnotu premennej bH:");
+        bD = validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:");
+        rf = validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:");
+        m = validaciaVstupov(scanner, "Zadajte hodnotu premennej m:");
+        y0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej y0:");
+        x0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej x0:");
+        z0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej z0:");
 
 
-        kontrolaPodmienok(aH, aD, bH, bD, rf);*/
+        kontrolaPodmienok(aH, aD, bH, bD, rf);
 
         //premene s ktorymi pracuje program
         double x ,y,zX=1,zY=1 ,x2 , y2;
@@ -49,12 +46,12 @@ public class Main {
         // double vysledok = (aH  / aH_initial) * x + (bH   / bH_initial) * y + (1 + rf) * z - m;
         // vypocet ako pri pocitani ked je ah 55 a ah initial 50 tak vysledok je 1,1. je to koli
         //vypoctu kedze zlomok tu nezapisem
-        x= (aH  / aH_initial);
-        y= (bH   / bH_initial);
+        x= (aH  / aPociatok);
+        y= (bH   / bPociatok);
         // Výpočet hodnoty pravej strany  z rovnice eliminácie rizika
         //double vysledok2 = (aD  / aH_initial) * x + (bD   / bH_initial) * y + (1 + rf) * z - m;
-        x2 =(aD  / aH_initial);
-        y2=(bD   / bH_initial);
+        x2 =(aD  / aPociatok);
+        y2=(bD   / bPociatok);
 
         if (!kontrolaPodmienok(x, x2, y, y2, rf)){
             System.out.println("Zadané premenné nevyhovujú ani jednej z prvých štyroch podmienok, tým pádom nie je možné\n" +
@@ -87,10 +84,10 @@ public class Main {
         x=m-y;
         zX=-zX-zY;
             //zisk
-        x=(aH  / aH_initial)*x;
-        zX=(aH  / aH_initial) *zX;
-        y=(bH   / bH_initial)*y;
-        zY=(bH   / bH_initial)  *zY;
+        x=(aH  / aPociatok)*x;
+        zX=(aH  / aPociatok) *zX;
+        y=(bH   / bPociatok)*y;
+        zY=(bH   / bPociatok)  *zY;
 
         double v,v1;
         v=x+y;
@@ -101,10 +98,10 @@ public class Main {
         System.out.println("Výsledok: " + v1);
         // opatavone preratanie pre vypocet J (nebolo by treba prepocitavat pokial dosadime do vzorca vyjde rovnako,
         //ale pre vypocet v mensich hodnotach na papieri je to jednoduchsie) priklad: 55/50 = 1,1x atd.
-        x= (aH  / aH_initial);
-        y= (bH   / bH_initial);
-        x2 =(aD  / aH_initial);
-        y2=(bD   / bH_initial);
+        x= (aH  / aPociatok);
+        y= (bH   / bPociatok);
+        x2 =(aD  / aPociatok);
+        y2=(bD   / bPociatok);
         double j = ((x * y2 - x2 * y - (x - x2) - (y2 - y)) / (x - x2 + y2 - y)); //vypocet j
         System.out.println("J = "+j);
 
@@ -119,6 +116,14 @@ public class Main {
                 System.out.println("tak hodnoty x, y by pri investovaní do akcií bolo za účelom\n" +
                         "eliminácie rizika potrebné voliť tak, aby x + y < 0 p.j");
             }
+        }
+        if (j > rf && rf > 0){
+            System.out.println("Investícia x p.j. do akcií A a y p.j. do akcií B by musela byť\n" +
+                    "uskutočnená tak, aby x + y > 0 p.j. Tento prípad však umožňuje investorovi potenciálne\n" +
+                    "neobmedzený nárast zisku voľbou z → −∞ na elimináciu rizika. Výška zisku závisí od toho,\n" +
+                    "koľko je investor schopný vypísať a predať v čase 0 dlhopisov na získanie finančných\n" +
+                    "prostriedkov potrebných na nákup akcií v zodpovedajúcom riziko eliminačnom pomere.\n" +
+                    "Platí 0 < x + y = m − z p.j");
         }
         if(j == 0){
             System.out.println("V špeciálnom prípade, v ktorom J = 0, nákup/predaj akcií v zodpovedajú-\n" +
