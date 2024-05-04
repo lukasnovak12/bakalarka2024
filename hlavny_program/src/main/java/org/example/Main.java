@@ -5,15 +5,18 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //vstupne premene
-       /* double aH_initial = 20.0;
+        double aH_initial = 20.0;
         double bH_initial = 50.0;
-        double aH = 24;
-        double aD = 16;
-        double bH = 40;
-        double bD = 55;
-        double rf = 0.05;
-        double m = 7000;
-        double z = 0 ;*/
+        double aH = 16;
+        double aD = 24;
+        double bH = 45;
+        double bD = 60;
+        double rf = 0.06;
+        double m = 10000;
+        double z = 0 ;
+        double x0 = 100;
+        double y0 = 200;
+        double z0 = 300;
         // Uvítacie privítanie
         System.out.println("Vitajte v programe na vyhodnotenie podmienok investícií do akcii a dlhopisov.");
         System.out.println("Po stlačení Enter začnite zadávať hodnoty.");
@@ -22,7 +25,7 @@ public class Main {
         scanner.nextLine();
 
 
-        double aH_initial = validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
+        /*double aH_initial = validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
         double bH_initial = validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
         double aH = validaciaVstupov(scanner, "Zadajte hodnotu premennej aH:");
         double aD = validaciaVstupov(scanner, "Zadajte hodnotu premennej aD:");
@@ -37,12 +40,15 @@ public class Main {
         System.out.println("Zadajte hodnotu premennej z0:");
         double z0 = scanner.nextDouble();
 
-        kontrolaPodmienok(aH, aD, bH, bD, rf);
+
+        kontrolaPodmienok(aH, aD, bH, bD, rf);*/
+
         //premene s ktorymi pracuje program
         double x ,y,zX=1,zY=1 ,x2 , y2;
-
         // Výpočet hodnoty lavej strany  z rovnice eliminácie rizika
-       // double vysledok = (aH  / aH_initial) * x + (bH   / bH_initial) * y + (1 + rf) * z - m;
+        // double vysledok = (aH  / aH_initial) * x + (bH   / bH_initial) * y + (1 + rf) * z - m;
+        // vypocet ako pri pocitani ked je ah 55 a ah initial 50 tak vysledok je 1,1. je to koli
+        //vypoctu kedze zlomok tu nezapisem
         x= (aH  / aH_initial);
         y= (bH   / bH_initial);
         // Výpočet hodnoty pravej strany  z rovnice eliminácie rizika
@@ -50,37 +56,36 @@ public class Main {
         x2 =(aD  / aH_initial);
         y2=(bD   / bH_initial);
 
-        System.out.println("Výsledok: " + x2);
-        System.out.println("Výsledok: " + y2);
-        double xPom = ( (bD - bH) / (aH - aD)); // pomocna premena pri overovani ci je k nerovna -1 opravene
-        if(xPom  == -1){
-            System.out.println("Ak sa k = -1 znamená to , že x + y = 0 ,z = m . X a Y nevieme z rovníc vyjadriť. " +
-                    "Preto z ide do + "+'\u221E');
+        if (!kontrolaPodmienok(x, x2, y, y2, rf)){
+            System.out.println("Zadané premenné nevyhovujú ani jednej z prvých štyroch podmienok, tým pádom nie je možné\n" +
+                    "príklad dopočítať.");
+            return;
         }
 
-            //zvysne vypocty
+        double k = ( (bD - bH) / (aH - aD)); // vypocet k
+        System.out.println("K = "+k);
+
+            //zvysne vypocty podla vzorca x = ( bD − bH / aH − aD )y
+
         x=x-x2;
         y2 = y2-y;
-        x= y2/x;//vzsledok x
-            //vypocet y
+        x= y2/x;//vysledok x = ( bD − bH / aH − aD )y
         System.out.println("Výsledok: " + x);
+
+        //vypocet y kedze x uz pozname
+        //y=1 pre otocenie zlomku a vyuzitie premennej
         y = 1;
         y=x+y;
-
             // Preklopenie zlomku a prehodenie na pravu stranu
         y=1/y;
-
         zY= -zY * y;
-
             //zbytok vypoctov pre y
         y=y*m;
-        //zaokruhlenie pre y*m (vysledok 4/7 * 7000 bolo 3999,99) preto to zaokruhlenie na cele cislo
+        //zaokruhlenie pre y*m (vysledok 4/7 * 7000 bolo 3999,99) preto to zaokruhlenie na cele cislo (priklad)
         y=Math.round(y);
             //pre x
-
         x=m-y;
         zX=-zX-zY;
-
             //zisk
         x=(aH  / aH_initial)*x;
         zX=(aH  / aH_initial) *zX;
@@ -92,17 +97,17 @@ public class Main {
         v1=1+zX+zY ;
 
 
-
-
         System.out.println("Výsledok: " + v);
         System.out.println("Výsledok: " + v1);
-        // opatavone preratanie pre vypocet J
+        // opatavone preratanie pre vypocet J (nebolo by treba prepocitavat pokial dosadime do vzorca vyjde rovnako,
+        //ale pre vypocet v mensich hodnotach na papieri je to jednoduchsie) priklad: 55/50 = 1,1x atd.
         x= (aH  / aH_initial);
         y= (bH   / bH_initial);
         x2 =(aD  / aH_initial);
         y2=(bD   / bH_initial);
         double j = ((x * y2 - x2 * y - (x - x2) - (y2 - y)) / (x - x2 + y2 - y)); //vypocet j
-       // j= j * -1;
+        System.out.println("J = "+j);
+
         if(rf > j && j > 0 || j < 0 && 0 < rf){
 
             if(rf > j && j > 0){
@@ -122,10 +127,11 @@ public class Main {
                     "preto sa investori snažia všetky dostupné finančné prostriedky investovať do ná-\n" +
                     "kupu dlhopisov.");
         }
-            Zopt.vypocetZOpt(xPom,j,x0,y0,m,z0,rf,aH,bH);
+            Zopt.vypocetZOpt(k,j,x0,y0,m,z0,rf,aH,bH);
 
 
     }
+
     private static double validaciaVstupov(Scanner scanner, String message) {
         double input;
         do {
@@ -138,27 +144,34 @@ public class Main {
         } while (input < 0);
         return input;
     }
-    private static void kontrolaPodmienok(double aH, double aD, double bH, double bD, double rf) {
+
+    private static boolean kontrolaPodmienok(double aH, double aD, double bH, double bD, double rf) {
         // Kontrola podmienok
         if ((aH > 1 + rf && 1 + rf > 1 && 1 > aD && bH < 1 && 1 < 1 + rf && 1 + rf < bD) &&
                 (aH != aD && bH != bD)) {
             // Akcia pre podmienku 1
             System.out.println("Podmienka 1 bola splnená. Vykonávam akciu pre podmienku 1.");
+            return true;
         } else if ((aH < 1 && 1 < 1 + rf && 1 + rf < aD && bH > 1 + rf && 1 + rf > 1 && 1 > bD) &&
                 (aH != aD && bH != bD)) {
             // Akcia pre podmienku 2
             System.out.println("Podmienka 2 bola splnená. Vykonávam akciu pre podmienku 2.");
+            return true;
         } else if ((aH > 1 + rf && 1 + rf > 1 && 1 > aD && bH > 1 + rf && 1 + rf > 1 && 1 > bD) &&
                 (aH != aD && bH != bD)) {
             // Akcia pre podmienku 3
             System.out.println("Podmienka 3 bola splnená. Vykonávam akciu pre podmienku 3.");
+            return true;
         } else if ((aH < 1 && 1 < 1 + rf && 1 + rf < aD && bH < 1 && 1 < 1 + rf && 1 + rf < bD) &&
                 (aH != aD && bH != bD)) {
             // Akcia pre podmienku 4
             System.out.println("Podmienka 4 bola splnená. Vykonávam akciu pre podmienku 4.");
+            return true;
         } else {
             // Žiadna podmienka nebola splnená
             System.out.println("Nie je možné vykonať žiadnu akciu(ziadna z podmienok nebola splnena).");
+            return false;
+
         }
     }
 }
