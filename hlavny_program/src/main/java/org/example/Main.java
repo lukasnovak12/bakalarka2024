@@ -13,7 +13,6 @@ public class Main {
         double bD = 0;
         double rf = 0;
         double m = 0;
-        double z = 0 ;
         double x0 = 0;
         double y0 = 0;
         double z0 = 0;
