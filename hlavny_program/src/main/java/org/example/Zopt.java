@@ -7,7 +7,8 @@ public class Zopt {
 
         if (k != -1 && j<rf) {
             if (k > 0) {
-                zOpt = Math.min(Math.min(m - x0 - y0, m - (1 + k) * x0 / k), m - (1 + k) * y0);
+                double pom = Math.min(m - x0 - y0, m - ((1 + k)/k) * x0 );
+                zOpt = Math.min(pom, m - (1 + k) * y0);
                 System.out.println("Ak x0 = ky0, tak zopt = m − x0 − y0, xopt = x0, yopt = y0.\n" +
                         " Ak x0 > ky0, tak zopt = m − (( 1+k)x0/k), xopt = x0, yopt = x0/k > y0.\n" +
                         " Ak x0 < ky0, tak zopt = m − (1 + k) y0, xopt = ky0 > x0, yopt = y0.");

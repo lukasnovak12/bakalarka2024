@@ -5,17 +5,17 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //vstupne premene
-        double aPociatok = 0;
-        double bPociatok = 0;
-        double aH = 0;
-        double aD = 0;
-        double bH = 0;
-        double bD = 0;
-        double rf = 0;
-        double m = 0;
-        double x0 = 0;
-        double y0 = 0;
-        double z0 = 0;
+        double aPociatok = 0.0;
+        double bPociatok = 0.0;
+        double aH = 0.0;
+        double aD = 0.0;
+        double bH = 0.0;
+        double bD = 0.0;
+        double rf = 0.0;
+        double m = 0.0;
+        double x0 = 0.0;
+        double y0 = 0.0;
+        double z0 = 0.0;
         // Uvítacie privítanie
         System.out.println("Vitajte v programe na vyhodnotenie podmienok investícií do akcii a dlhopisov.");
         System.out.println("Po stlačení Enter začnite zadávať hodnoty.");
@@ -32,12 +32,16 @@ public class Main {
         bD = validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:");
         rf = validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:");
         m = validaciaVstupov(scanner, "Zadajte hodnotu premennej m:");
-        y0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej y0:");
-        x0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej x0:");
-        z0 = validaciaVstupov(scanner, "Zadajte hodnotu premennej z0:");
+        System.out.println("Zadajte hodnotu premennej y0:");
+        y0 = scanner.nextDouble();
+        System.out.println("Zadajte hodnotu premennej x0:");
+        x0 = scanner.nextDouble();
+        System.out.println("Zadajte hodnotu premennej z0:");
+        z0 = scanner.nextDouble();
 
 
-        kontrolaPodmienok(aH, aD, bH, bD, rf);
+
+
 
         //premene s ktorymi pracuje program
         double x ,y,zX=1,zY=1 ,x2 , y2;
@@ -51,6 +55,8 @@ public class Main {
         //double vysledok2 = (aD  / aH_initial) * x + (bD   / bH_initial) * y + (1 + rf) * z - m;
         x2 =(aD  / aPociatok);
         y2=(bD   / bPociatok);
+
+        kontrolaPodmienok(x, x2, y, y2, rf);
 
         if (!kontrolaPodmienok(x, x2, y, y2, rf)){
             System.out.println("Zadané premenné nevyhovujú ani jednej z prvých štyroch podmienok, tým pádom nie je možné\n" +
@@ -84,17 +90,17 @@ public class Main {
         zX=-zX-zY;
             //zisk
         x=(aH  / aPociatok)*x;
-        zX=(aH  / aPociatok) *zX;
+        zX=(aD  / aPociatok) *zX;
         y=(bH   / bPociatok)*y;
-        zY=(bH   / bPociatok)  *zY;
+        zY=(bD   / bPociatok)  *zY;
 
         double v,v1;
         v=x+y;
         v1=1+zX+zY ;
 
 
-        System.out.println("Výsledok: " + v);
-        System.out.println("Výsledok: " + v1);
+        System.out.println("Výsledok zisku z lavej strany rovnice: " + v);
+        System.out.println("Výsledok z: " + v1);
         // opatavone preratanie pre vypocet J (nebolo by treba prepocitavat pokial dosadime do vzorca vyjde rovnako,
         //ale pre vypocet v mensich hodnotach na papieri je to jednoduchsie) priklad: 55/50 = 1,1x atd.
         x= (aH  / aPociatok);
@@ -127,11 +133,10 @@ public class Main {
         if(j == 0){
             System.out.println("V špeciálnom prípade, v ktorom J = 0, nákup/predaj akcií v zodpovedajú-\n" +
                     "com riziko eliminujúcom pomere neprináša žiadne dodatočné finančné odmeny a\n" +
-                    "3\n" +
                     "preto sa investori snažia všetky dostupné finančné prostriedky investovať do ná-\n" +
                     "kupu dlhopisov.");
         }
-            Zopt.vypocetZOpt(k,j,x0,y0,m,z0,rf,aH,bH);
+        System.out.println("Zopt = " + Zopt.vypocetZOpt(k,j,x0,y0,m,z0,rf,aH,bH));
 
 
     }
