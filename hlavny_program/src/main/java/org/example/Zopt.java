@@ -4,14 +4,28 @@ public class Zopt {
 
     public static double vypocetZOpt(double k,double j, double x0, double y0, double m,double z0, double rf,double aH, double bH) {
         double zOpt = 0.0;
-
+        double xOpt = 0.0;
+        double yOpt = 0.0;
         if (k != -1 && j<rf) {
             if (k > 0) {
                 double pom = Math.min(m - x0 - y0, m - ((1 + k)/k) * x0 );
                 zOpt = Math.min(pom, m - (1 + k) * y0);
-                System.out.println("Ak x0 = ky0, tak zopt = m − x0 − y0, xopt = x0, yopt = y0.\n" +
-                        " Ak x0 > ky0, tak zopt = m − (( 1+k)x0/k), xopt = x0, yopt = x0/k > y0.\n" +
-                        " Ak x0 < ky0, tak zopt = m − (1 + k) y0, xopt = ky0 > x0, yopt = y0.");
+                if (x0 == k* y0){
+                    zOpt =m-x0-y0;
+                    xOpt = x0;
+                    yOpt = y0;
+                    System.out.println("Ak x0 = ky0, tak zopt = m − x0 − y0, xopt = x0, yopt = y0.");
+                } else if (x0 > k *y0) {
+                    zOpt = m - ((1+k) * x0 / k);
+                    xOpt = x0;
+                    yOpt = x0/k;
+                    System.out.println("Ak x0 > ky0, tak zopt = m − (( 1+k)x0/k), xopt = x0, yopt = x0/k > y0.");
+                }else if (x0<k * y0) {
+                    zOpt = m - (1 + k) * y0;
+                    xOpt = k * y0;
+                    yOpt = y0;
+                    System.out.println("Ak x0 < ky0, tak zopt = m − (1 + k) y0, xopt = ky0 > x0, yopt = y0.");
+                }
                 System.out.println("zOpt = "+zOpt);
             } else if (k < -1) {
                 zOpt=m-(1+k)*x0/k;
