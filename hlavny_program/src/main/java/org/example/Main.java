@@ -5,17 +5,17 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //vstupne premene
-        double aPociatok = 0.0;
-        double bPociatok = 0.0;
-        double aH = 0.0;
-        double aD = 0.0;
-        double bH = 0.0;
-        double bD = 0.0;
-        double rf = 0.0;
-        double m = 0.0;
-        double x0 = 0.0;
-        double y0 = 0.0;
-        double z0 = 0.0;
+        double aPociatok;
+        double bPociatok;
+        double aH;
+        double aD;
+        double bH;
+        double bD;
+        double rf;
+        double m;
+        double x0;
+        double y0;
+        double z0;
         // Uvítacie privítanie
         System.out.println("Vitajte v programe na vyhodnotenie podmienok investícií do akcii a dlhopisov.");
         System.out.println("Po stlačení Enter začnite zadávať hodnoty.");
@@ -112,12 +112,12 @@ public class Main {
 
         if(rf > j && j > 0 || j < 0 && 0 < rf){
 
-            if(rf > j && j > 0){
+            if(j > 0){
                 System.out.println("Vysledok J je sice vacsi ako  0 ale nieje vacsi ako urokova miera\n" +
                         "dlhopisu preto maximalizujeme z = m. Popripade ked vlastnime nejake akcie A,B v case 0 ,\n " +
-                        "mozeme ich predat a naspat nakupit v case 1. zisk bude stale vacsi tym ze z -> "+'\u221E');
+                        "mozeme ich predat a naspat nakupit v case 1. zisk bude stale vacsi tym ze z -> "+'∞');
             }
-            if(j < 0 && 0 < rf){
+            if(j < 0){
                 System.out.println("tak hodnoty x, y by pri investovaní do akcií bolo za účelom\n" +
                         "eliminácie rizika potrebné voliť tak, aby x + y < 0 p.j");
             }

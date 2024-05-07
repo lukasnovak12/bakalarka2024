@@ -3,9 +3,10 @@ package org.example;
 public class Zopt {
 
     public static double vypocetZOpt(double k,double j, double x0, double y0, double m,double z0, double rf,double aH, double bH) {
-        double zOpt = 0.0;
+        double zOpt;
         double xOpt = 0.0;
         double yOpt = 0.0;
+
         if (k != -1 && j<rf) {
             if (k > 0) {
                 double pom = Math.min(m - x0 - y0, m - ((1 + k)/k) * x0 );
@@ -16,7 +17,7 @@ public class Zopt {
                     yOpt = y0;
                     System.out.println("Ak x0 = ky0, tak zopt = m − x0 − y0, xopt = x0, yopt = y0.");
                 } else if (x0 > k *y0) {
-                    zOpt = m - ((1+k) * x0 / k);
+                    zOpt = m - (1+k) * x0 / k;
                     xOpt = x0;
                     yOpt = x0/k;
                     System.out.println("Ak x0 > ky0, tak zopt = m − (( 1+k)x0/k), xopt = x0, yopt = x0/k > y0.");
@@ -26,9 +27,9 @@ public class Zopt {
                     yOpt = y0;
                     System.out.println("Ak x0 < ky0, tak zopt = m − (1 + k) y0, xopt = ky0 > x0, yopt = y0.");
                 }
-                System.out.println("zOpt = "+zOpt);
+                System.out.println("zOpt = "+zOpt+"\nyOpt = "+yOpt+"\nxOpt = "+xOpt);
             } else if (k < -1) {
-                zOpt=m-(1+k)*x0/k;
+                zOpt= m-((1+k)*x0/k);
                 System.out.println("Investor dokáže navíšit svoj arbitrážny zisk prostredníctvom penažných" +
                         "prostriedkov získanych z predaja akcie A v čase 0 . V prípade, že nieje schopný využiť vzniknutú" +
                         "arbitrážnu príležitost, pretože nevlastní žiadne akcie A v čase  0 ,ktoré mohol predať, jeho zisk bude rovný rfm.");
@@ -81,9 +82,6 @@ public class Zopt {
                 System.out.println("Pokiaľ k = -1 a aH < bH  ,tak potom je potrebné investovať do akcie B, t.j. voliť yopt > 0. ");
             }
         }
-
         return zOpt;
     }
-
-
 }
