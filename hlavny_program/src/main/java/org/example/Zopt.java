@@ -3,7 +3,7 @@ package org.example;
 public class Zopt {
 
     public static double vypocetZOpt(double k,double j, double x0, double y0, double m,double z0, double rf,double aH, double bH) {
-        double zOpt;
+        double zOpt = 0.0;
         double xOpt = 0.0;
         double yOpt = 0.0;
 
@@ -34,7 +34,7 @@ public class Zopt {
                         "prostriedkov získanych z predaja akcie A v čase 0 . V prípade, že nieje schopný využiť vzniknutú" +
                         "arbitrážnu príležitost, pretože nevlastní žiadne akcie A v čase  0 ,ktoré mohol predať, jeho zisk bude rovný rfm.");
                 System.out.println("zOpt = "+zOpt);
-            } else { // -1 < k < 0
+            } else if (-1 < k && k < 0){ // -1 < k < 0
             zOpt=m-(1+k)*y0;
                 System.out.println("Investor dokáže navíšit svoj arbitrážny zisk prostredníctvom penažných" +
                         "prostriedkov získanych z predaja akcie B v čase 0 . V prípade, že nieje schopný využiť vzniknutú" +
