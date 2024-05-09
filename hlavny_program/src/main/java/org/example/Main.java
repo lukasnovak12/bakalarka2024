@@ -31,16 +31,9 @@ public class Main {
         bD = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:");
         rf = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:");
         m = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej m:");
-        System.out.println("Zadajte hodnotu počtu akcií B, ktoré vlastníte v čase 0:");
-        y0 = scanner.nextDouble();
-        System.out.println("Zadajte hodnotu počtu akcií A, ktoré vlastníte v čase 0: ");
-        x0 = scanner.nextDouble();
-        System.out.println("Zadajte hodnotu počtu dlhopisov, ktoré vlastníte v čase 0:");
-        z0 = scanner.nextDouble();
-
-
-
-
+        y0 = Validacia.validaciaVstupovCasNula(scanner,"Zadajte hodnotu počtu akcií B, ktoré vlastníte v čase 0:");
+        x0 = Validacia.validaciaVstupovCasNula(scanner,"Zadajte hodnotu počtu akcií A, ktoré vlastníte v čase 0:");
+        z0 = Validacia.validaciaVstupovCasNula(scanner,"Zadajte hodnotu počtu dlhopisov, ktoré vlastníte v čase 0:");
 
         //premene s ktorymi pracuje program
         double x ,y,zX=1,zY=1 ,x2 , y2;
@@ -55,11 +48,7 @@ public class Main {
         x2 =(aD  / aPociatok);
         y2=(bD   / bPociatok);
 
-        KontrolaP.kontrolaPodmienok(x, x2, y, y2, rf);
-
         if (!KontrolaP.kontrolaPodmienok(x, x2, y, y2, rf)){
-            System.out.println("Zadané premenné nevyhovujú ani jednej z prvých štyroch podmienok, tým pádom nie je možné\n" +
-                    "príklad dopočítať.");
             return;
         }
 

@@ -16,4 +16,17 @@ public class Validacia {
         } while (input < 0);
         return input;
     }
+
+    public static double validaciaVstupovCasNula(Scanner scanner, String message) {
+        double input;
+        do {
+            System.out.println(message);
+            input = scanner.nextDouble();
+
+            if (input > 0) {
+                System.out.println("Hodnota nemôže byť kladná. Zadajte ju znova.");
+            }
+        } while (input > 0);
+        return input;
+    }
 }

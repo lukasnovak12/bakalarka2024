@@ -25,7 +25,7 @@ public class KontrolaP {
             return true;
         } else {
             // Žiadna podmienka nebola splnená
-            //System.out.println("Nie je možné vykonať žiadnu akciu(ziadna z podmienok nebola splnena).");
+            System.out.println("Nie je možné vykonať žiadnu ďaľšiu akciu(ziadna z podmienok nebola splnena).");
             return false;
 
         }

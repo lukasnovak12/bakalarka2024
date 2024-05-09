@@ -7,11 +7,6 @@ public class Zisk {
         zX=(aHD  / aPociatok) *zX;
         y=(bHD   / bPociatok)*y;
         zY=(bHD   / bPociatok)  *zY;
-        System.out.println(x);
-        System.out.println(zX);
-        System.out.println(y);
-        System.out.println(zY);
-        //skusobne vypocty
         double v,v1;
         v=x+y;
         v=v-m;
