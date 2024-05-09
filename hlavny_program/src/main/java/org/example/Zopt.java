@@ -74,12 +74,15 @@ public class Zopt {
                 zOpt = m;
                 System.out.println("Pokiaľ k = -1 a aH = bH ,arbitráž na trhu neexistuje a hodnoty x, y môžu byť zvolené ľubovoľne tak, aby bolo splnené\n" +
                         "x = −y. z=m");
+                System.out.println("zOpt = " + zOpt);
             } else if (aH > bH) {
-                zOpt = m;
+                xOpt = m;
                 System.out.println("Pokiaľ k = -1 a aH > bH  , tak je potrebné investovať do akcie A, t.j. voliť xopt > 0.");
+                System.out.println("xOpt = " + xOpt);
             } else { // aH < bH
-                zOpt = m;
+                yOpt = m;
                 System.out.println("Pokiaľ k = -1 a aH < bH  ,tak potom je potrebné investovať do akcie B, t.j. voliť yopt > 0. ");
+                System.out.println("yOpt = " + yOpt);
             }
         }
         return zOpt;

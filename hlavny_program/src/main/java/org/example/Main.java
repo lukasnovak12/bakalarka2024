@@ -93,14 +93,14 @@ public class Main {
         zX=(aD  / aPociatok) *zX;
         y=(bH   / bPociatok)*y;
         zY=(bD   / bPociatok)  *zY;
-
+        //skusobne vypocty
         double v,v1;
         v=x+y;
         v1=1+zX+zY ;
-
-
         System.out.println("Výsledok zisku z lavej strany rovnice: " + v);
         System.out.println("Výsledok z: " + v1);
+        //skusobne vypocty
+
         // opatavone preratanie pre vypocet J (nebolo by treba prepocitavat pokial dosadime do vzorca vyjde rovnako,
         //ale pre vypocet v mensich hodnotach na papieri je to jednoduchsie) priklad: 55/50 = 1,1x atd.
         x= (aH  / aPociatok);
@@ -113,12 +113,12 @@ public class Main {
         if(rf > j && j > 0 || j < 0 && 0 < rf){
 
             if(j > 0){
-                System.out.println("Vysledok J je sice vacsi ako  0 ale nieje vacsi ako urokova miera\n" +
-                        "dlhopisu preto maximalizujeme z = m. Popripade ked vlastnime nejake akcie A,B v case 0 ,\n " +
-                        "mozeme ich predat a naspat nakupit v case 1. zisk bude stale vacsi tym ze z -> "+'∞');
+                System.out.println("Výsledok J je síce väčší ako 0 ale nieje väčší ako úroková miera\n" +
+                        "dlhopisu preto maximalizujeme z = m. Poprípade keď vlastníme nejaké akcie A,B v čase 0 ,\n " +
+                        "môžeme ich predať a naspäť nakúpiť v čase 1. Zisk bude stále väčší tým, že z -> "+'∞');
             }
             if(j < 0){
-                System.out.println("tak hodnoty x, y by pri investovaní do akcií bolo za účelom\n" +
+                System.out.println("Hodnoty x, y by pri investovaní do akcií bolo za účelom\n" +
                         "eliminácie rizika potrebné voliť tak, aby x + y < 0 p.j");
             }
         }
@@ -136,7 +136,7 @@ public class Main {
                     "preto sa investori snažia všetky dostupné finančné prostriedky investovať do ná-\n" +
                     "kupu dlhopisov.");
         }
-        System.out.println("Zopt = " + Zopt.vypocetZOpt(k,j,x0,y0,m,z0,rf,aH,bH));
+        Zopt.vypocetZOpt(k,j,x0,y0,m,z0,rf,aH,bH);
 
 
     }
