@@ -23,7 +23,6 @@ public class Main {
         // Čakanie na stlačenie Enter
         scanner.nextLine();
 
-
         aPociatok = Validacia.validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
         bPociatok = Validacia.validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
         aH = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej aH:");
@@ -32,11 +31,11 @@ public class Main {
         bD = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:");
         rf = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:");
         m = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej m:");
-        System.out.println("Zadajte hodnotu premennej y0:");
+        System.out.println("Zadajte hodnotu počtu akcií B, ktoré vlastníte v čase 0:");
         y0 = scanner.nextDouble();
-        System.out.println("Zadajte hodnotu premennej x0:");
+        System.out.println("Zadajte hodnotu počtu akcií A, ktoré vlastníte v čase 0: ");
         x0 = scanner.nextDouble();
-        System.out.println("Zadajte hodnotu premennej z0:");
+        System.out.println("Zadajte hodnotu počtu dlhopisov, ktoré vlastníte v čase 0:");
         z0 = scanner.nextDouble();
 
 
@@ -72,8 +71,6 @@ public class Main {
         x=x-x2;
         y2 = y2-y;
         x= y2/x;//vysledok x = ( bD − bH / aH − aD )y
-        System.out.println("Výsledok: " + x);
-
         //vypocet y kedze x uz pozname
         //y=1 pre otocenie zlomku a vyuzitie premennej
         y = 1;
@@ -88,20 +85,12 @@ public class Main {
             //pre x
         x=m-y;
         zX=-zX-zY;
-            //zisk
-        x=(aH  / aPociatok)*x;
-        zX=(aD  / aPociatok) *zX;
-        y=(bH   / bPociatok)*y;
-        zY=(bD   / bPociatok)  *zY;
-        //skusobne vypocty
-        double v,v1;
-        v=x+y;
-        v=v-m;
-        v1=1+zX+zY ;
-        v1=v1*m;
-        System.out.println("Výsledok zisku z lavej strany rovnice: " + v);
-        System.out.println("Výsledok z zo zisku z ppravej strany rovnice: " + v1);
-        //skusobne vypocty
+        Vysledky vysledky = Zisk.VypocetZisk(x,zX,y,zY,aH,bH,aPociatok,bPociatok,m);
+        System.out.println("Výsledok zisku z lavej strany rovnice: " + vysledky.getVysledok1());
+        System.out.println("Výsledok z zo zisku z lavej strany rovnice: " + vysledky.getVysledok2());
+        vysledky = Zisk.VypocetZisk(x,zX,y,zY,aD,bD,aPociatok,bPociatok,m);
+        System.out.println("Výsledok zisku z pravej strany rovnice: " + vysledky.getVysledok1());
+        System.out.println("Výsledok z zo zisku z pravej strany rovnice: " + vysledky.getVysledok2());
 
         // opatavone preratanie pre vypocet J (nebolo by treba prepocitavat pokial dosadime do vzorca vyjde rovnako,
         //ale pre vypocet v mensich hodnotach na papieri je to jednoduchsie) priklad: 55/50 = 1,1x atd.
@@ -139,8 +128,6 @@ public class Main {
                     "kupu dlhopisov.");
         }
         Zopt.vypocetZOpt(k,j,x0,y0,m,z0,rf,aH,bH);
-
-
     }
 
 }
