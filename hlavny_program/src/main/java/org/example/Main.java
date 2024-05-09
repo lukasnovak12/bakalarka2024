@@ -24,14 +24,14 @@ public class Main {
         scanner.nextLine();
 
 
-        aPociatok = validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
-        bPociatok = validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
-        aH = validaciaVstupov(scanner, "Zadajte hodnotu premennej aH:");
-        aD = validaciaVstupov(scanner, "Zadajte hodnotu premennej aD:");
-        bH = validaciaVstupov(scanner, "Zadajte hodnotu premennej bH:");
-        bD = validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:");
-        rf = validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:");
-        m = validaciaVstupov(scanner, "Zadajte hodnotu premennej m:");
+        aPociatok = Validacia.validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
+        bPociatok = Validacia.validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
+        aH = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej aH:");
+        aD = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej aD:");
+        bH = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej bH:");
+        bD = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:");
+        rf = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:");
+        m = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej m:");
         System.out.println("Zadajte hodnotu premennej y0:");
         y0 = scanner.nextDouble();
         System.out.println("Zadajte hodnotu premennej x0:");
@@ -56,9 +56,9 @@ public class Main {
         x2 =(aD  / aPociatok);
         y2=(bD   / bPociatok);
 
-        kontrolaPodmienok(x, x2, y, y2, rf);
+        KontrolaP.kontrolaPodmienok(x, x2, y, y2, rf);
 
-        if (!kontrolaPodmienok(x, x2, y, y2, rf)){
+        if (!KontrolaP.kontrolaPodmienok(x, x2, y, y2, rf)){
             System.out.println("Zadané premenné nevyhovujú ani jednej z prvých štyroch podmienok, tým pádom nie je možné\n" +
                     "príklad dopočítať.");
             return;
@@ -141,46 +141,4 @@ public class Main {
 
     }
 
-    private static double validaciaVstupov(Scanner scanner, String message) {
-        double input;
-        do {
-            System.out.println(message);
-            input = scanner.nextDouble();
-
-            if (input < 0) {
-                System.out.println("Hodnota nemôže byť záporná. Zadajte ju znova.");
-            }
-        } while (input < 0);
-        return input;
-    }
-
-    private static boolean kontrolaPodmienok(double aH, double aD, double bH, double bD, double rf) {
-        // Kontrola podmienok
-        if ((aH > 1 + rf && 1 + rf > 1 && 1 > aD && bH < 1 && 1 < 1 + rf && 1 + rf < bD) &&
-                (aH != aD && bH != bD)) {
-            // Akcia pre podmienku 1
-            System.out.println("Podmienka 1 bola splnená. Vykonávam akciu pre podmienku 1.");
-            return true;
-        } else if ((aH < 1 && 1 < 1 + rf && 1 + rf < aD && bH > 1 + rf && 1 + rf > 1 && 1 > bD) &&
-                (aH != aD && bH != bD)) {
-            // Akcia pre podmienku 2
-            System.out.println("Podmienka 2 bola splnená. Vykonávam akciu pre podmienku 2.");
-            return true;
-        } else if ((aH > 1 + rf && 1 + rf > 1 && 1 > aD && bH > 1 + rf && 1 + rf > 1 && 1 > bD) &&
-                (aH != aD && bH != bD)) {
-            // Akcia pre podmienku 3
-            System.out.println("Podmienka 3 bola splnená. Vykonávam akciu pre podmienku 3.");
-            return true;
-        } else if ((aH < 1 && 1 < 1 + rf && 1 + rf < aD && bH < 1 && 1 < 1 + rf && 1 + rf < bD) &&
-                (aH != aD && bH != bD)) {
-            // Akcia pre podmienku 4
-            System.out.println("Podmienka 4 bola splnená. Vykonávam akciu pre podmienku 4.");
-            return true;
-        } else {
-            // Žiadna podmienka nebola splnená
-            System.out.println("Nie je možné vykonať žiadnu akciu(ziadna z podmienok nebola splnena).");
-            return false;
-
-        }
-    }
 }

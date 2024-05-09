@@ -16,7 +16,7 @@ public class Zopt {
                     xOpt = x0;
                     yOpt = y0;
                     System.out.println("Ak x0 = ky0, tak zopt = m − x0 − y0, xopt = x0, yopt = y0.");
-                } else if (x0 > k *y0) {
+                } else if (x0 > k*y0) {
                     zOpt = m - (1+k) * x0 / k;
                     xOpt = x0;
                     yOpt = x0/k;
