@@ -80,7 +80,6 @@ public class Main {
         vysledky = Zisk.VypocetZisk(x,zX,y,zY,aD,bD,aPociatok,bPociatok,m);
         System.out.println("Výsledok zisku z pravej strany rovnice: " + vysledky.getVysledok1());
         System.out.println("Výsledok z zo zisku z pravej strany rovnice: " + vysledky.getVysledok2());
-
         // opatavone preratanie pre vypocet J (nebolo by treba prepocitavat pokial dosadime do vzorca vyjde rovnako,
         //ale pre vypocet v mensich hodnotach na papieri je to jednoduchsie) priklad: 55/50 = 1,1x atd.
         x= (aH  / aPociatok);
