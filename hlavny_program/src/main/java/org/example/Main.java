@@ -96,9 +96,11 @@ public class Main {
         //skusobne vypocty
         double v,v1;
         v=x+y;
+        v=m-v;
         v1=1+zX+zY ;
+        v1=v1*m;
         System.out.println("Výsledok zisku z lavej strany rovnice: " + v);
-        System.out.println("Výsledok z: " + v1);
+        System.out.println("Výsledok z zo zisku z ppravej strany rovnice: " + v1);
         //skusobne vypocty
 
         // opatavone preratanie pre vypocet J (nebolo by treba prepocitavat pokial dosadime do vzorca vyjde rovnako,
