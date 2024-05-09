@@ -96,7 +96,7 @@ public class Main {
         //skusobne vypocty
         double v,v1;
         v=x+y;
-        v=m-v;
+        v=v-m;
         v1=1+zX+zY ;
         v1=v1*m;
         System.out.println("Výsledok zisku z lavej strany rovnice: " + v);
