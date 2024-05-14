@@ -1,12 +1,14 @@
 package org.example;
 
 public class HodnotaJ {
+
     public static double vypocetAVypisJ(double aPociatok, double bPociatok, double aH, double bH, double aD, double bD, double rf) {
         double x= (aH  / aPociatok);
         double y= (bH   / bPociatok);
         double x2 =(aD  / aPociatok);
         double y2=(bD   / bPociatok);
         double j = ((x * y2 - x2 * y - (x - x2) - (y2 - y)) / (x - x2 + y2 - y)); //vypocet j
+        j = Math.round(j * 10000.0) / 10000.0;
         System.out.println("J = "+j);
 
         if(rf > j && j > 0 || j < 0 && 0 < rf){
@@ -34,6 +36,13 @@ public class HodnotaJ {
                     "com riziko eliminujúcom pomere neprináša žiadne dodatočné finančné odmeny a\n" +
                     "preto sa investori snažia všetky dostupné finančné prostriedky investovať do ná-\n" +
                     "kupu dlhopisov.");
+        }
+        if(j == rf){
+            System.out.println("Pokiaľ J = rf , tak investor nemôže žiadnym spôsobom navýšiť svoj zisk. Výber z\n" +
+                    "môže byť ľubovoľný, pretože pre ktorúkoľvek jeho hodnotu bude zisk investora rovný\n" +
+                    "práve Jm = rf m p.j. V takomto prípade arbitráž neexistuje a bezriziková úroková sadzba\n" +
+                    "dlhopisu je správne (bezarbitrážne) určená.");
+
         }
         return j;
     }

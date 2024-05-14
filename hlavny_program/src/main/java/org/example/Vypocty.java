@@ -68,6 +68,9 @@ public class Vypocty {
         // vypocet  J
         double j = HodnotaJ.vypocetAVypisJ(vstupy.getaPociatok(),vstupy.getbPociatok(),vstupy.getaH(),vstupy.getbH(),vstupy.getaD(),vstupy.getbD(),vstupy.getRf());
 
+        if (j==rf){
+            return;
+        }
         //pokial si uzivatel vybral generovanie cisel pre x0,y0,z0 tak sa tento kod uskutocni, v kode je generovanie cisel
         //nasledna kontrola ci je cislo cele a ukladanie a mazanie terminalu pre rovnake vypisi. aby nebolo treba robit novu metodu pre
         //zOpt bez vypisov premaze vzdy len vystup z metody
@@ -84,7 +87,7 @@ public class Vypocty {
                 x0 = generovanieNahodnychCisel();
                 y0 = generovanieNahodnychCisel();
                 z0 = generovanieNahodnychCisel();
-                zOpt = Zopt.vypocetZOpt(k, j, x0, y0, m, z0, rf, aH, bH);
+                zOpt = Zopt.vypocetZOpt(k, j, x0, y0, m, z0, rf, vstupy.getaH()/vstupy.getaPociatok(), vstupy.getbH()/vstupy.getbPociatok());
                 System.out.flush();
                 System.setOut(povodnyVystup);
             } while (!jeCeleCislo(zOpt));

@@ -76,12 +76,20 @@ public class Zopt {
                         "x = −y. z=m");
                 System.out.println("zOpt = " + zOpt);
             } else if (aH > bH) {
-                xOpt = m;
+                zOpt = m;
+                yOpt = y0;
+                xOpt = -y0;
                 System.out.println("Pokiaľ k = -1 a aH > bH  , tak je potrebné investovať do akcie A, t.j. voliť xopt > 0.");
+                System.out.println("zOpt = " + zOpt);
                 System.out.println("xOpt = " + xOpt);
+                System.out.println("yOpt = " + yOpt);
             } else { // aH < bH
-                yOpt = m;
+                zOpt = m;
+                xOpt = x0;
+                yOpt = -x0;
                 System.out.println("Pokiaľ k = -1 a aH < bH  ,tak potom je potrebné investovať do akcie B, t.j. voliť yopt > 0. ");
+                System.out.println("zOpt = " + zOpt);
+                System.out.println("xOpt = " + xOpt);
                 System.out.println("yOpt = " + yOpt);
             }
         }
