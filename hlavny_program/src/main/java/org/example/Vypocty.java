@@ -3,7 +3,6 @@ package org.example;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Vypocty {
     public Vypocty() {

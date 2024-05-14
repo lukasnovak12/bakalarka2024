@@ -1,8 +1,8 @@
 package org.example;
 
 public class Vysledky {
-    private double vysledok1;
-    private double vysledok2;
+    private final double vysledok1;
+    private final double vysledok2;
 
     public Vysledky(double result1, double result2) {
         this.vysledok1 = result1;
