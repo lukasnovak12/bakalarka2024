@@ -1,5 +1,8 @@
 package org.example;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -13,9 +16,9 @@ public class Main {
         double bD;
         double rf;
         double m;
-        double x0;
-        double y0;
-        double z0;
+        double x0=0;
+        double y0=0;
+        double z0=0;
         // Uvítacie privítanie
         System.out.println("Vitajte v programe na vyhodnotenie podmienok investícií do akcii a dlhopisov.");
         System.out.println("Po stlačení Enter začnite zadávať hodnoty.");
@@ -23,18 +26,27 @@ public class Main {
         // Čakanie na stlačenie Enter
         scanner.nextLine();
 
-        aPociatok = Validacia.validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
-        bPociatok = Validacia.validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
-        aH = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej aH:");
-        aD = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej aD:");
-        bH = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej bH:");
-        bD = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:");
-        rf = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:");
-        m = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej m:");
-        y0 = Validacia.validaciaVstupovCasNula(scanner,"Zadajte hodnotu počtu akcií B, ktoré vlastníte v čase 0:");
-        x0 = Validacia.validaciaVstupovCasNula(scanner,"Zadajte hodnotu počtu akcií A, ktoré vlastníte v čase 0:");
-        z0 = Validacia.validaciaVstupovCasNula(scanner,"Zadajte hodnotu počtu dlhopisov, ktoré vlastníte v čase 0:");
+        aPociatok = Validacia.validaciaVstupovA(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
+        bPociatok = Validacia.validaciaVstupovA(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
+        aH = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej aH:");
+        aD = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej aD:");
+        bH = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej bH:");
+        bD = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej bD:");
+        rf = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej rf:");
+        m = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej m:");
 
+        System.out.println("Chcete si zadať premenné x0,y0,z0 svoje, alebo chcete aby ich program vygeneroval ?\n" +
+                            "Pokiaľ áno stlačte 'y' pokiaľ nie stlačte 'n'. ");
+        String input=scanner.next();
+        while (!input.equals("y") && !input.equals("n") ){
+            System.out.println("Neplatná odpoveď ! Zadajte odpoveď znova:");
+            input= scanner.next();
+        }
+        if (input.equals("n")) {
+            y0 = Validacia.validaciaVstupovB(scanner, "Zadajte hodnotu počtu akcií B, ktoré vlastníte v čase 0:");
+            x0 = Validacia.validaciaVstupovB(scanner, "Zadajte hodnotu počtu akcií A, ktoré vlastníte v čase 0:");
+            z0 = Validacia.validaciaVstupovB(scanner, "Zadajte hodnotu počtu dlhopisov, ktoré vlastníte v čase 0:");
+        }
         //premene s ktorymi pracuje program
         double x ,y,zX=1,zY=1 ,x2 , y2;
         // Výpočet hodnoty lavej strany  z rovnice eliminácie rizika
@@ -75,11 +87,11 @@ public class Main {
         x=m-y;
         zX=-zX-zY;
         Vysledky vysledky = Zisk.VypocetZisk(x,zX,y,zY,aH,bH,aPociatok,bPociatok,m);
-        System.out.println("Výsledok zisku z lavej strany rovnice: " + vysledky.getVysledok1());
-        System.out.println("Výsledok z zo zisku z lavej strany rovnice: " + vysledky.getVysledok2());
+        System.out.println("Výsledok zisku z lavej strany rovnice(udalosť H): " + vysledky.getVysledok1());
+        System.out.println("Výsledok Z zo zisku z lavej strany rovnice(udalosť H): " + vysledky.getVysledok2());
         vysledky = Zisk.VypocetZisk(x,zX,y,zY,aD,bD,aPociatok,bPociatok,m);
-        System.out.println("Výsledok zisku z pravej strany rovnice: " + vysledky.getVysledok1());
-        System.out.println("Výsledok z zo zisku z pravej strany rovnice: " + vysledky.getVysledok2());
+        System.out.println("Výsledok zisku z pravej strany rovnice(udalosť D): " + vysledky.getVysledok1());
+        System.out.println("Výsledok Z zo zisku z pravej strany rovnice(udalosť D): " + vysledky.getVysledok2());
         // opatavone preratanie pre vypocet J (nebolo by treba prepocitavat pokial dosadime do vzorca vyjde rovnako,
         //ale pre vypocet v mensich hodnotach na papieri je to jednoduchsie) priklad: 55/50 = 1,1x atd.
         x= (aH  / aPociatok);
@@ -115,7 +127,39 @@ public class Main {
                     "preto sa investori snažia všetky dostupné finančné prostriedky investovať do ná-\n" +
                     "kupu dlhopisov.");
         }
+        //pokial si uzivatel vybral generovanie cisel pre x0,y0,z0 tak sa tento kod uskutocni, v kode je generovanie cisel
+        //nasledna kontrola ci je cislo cele a ukladanie a mazanie terminalu pre rovnake vypisi. aby nebolo treba robit novu metodu pre
+        //zOpt bez vypisov premaze vzdy len vystup z metody
+        double  zOpt;
+        if (input.equals("y")) {
+            do {
+                PrintStream povodnyVystup = System.out;
+                ByteArrayOutputStream ulozenieVystupu = new ByteArrayOutputStream();
+                PrintStream novyVystup = new PrintStream(ulozenieVystupu);
+                System.setOut(novyVystup);
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                x0 = generovanieNahodnychCisel();
+                y0 = generovanieNahodnychCisel();
+                z0 = generovanieNahodnychCisel();
+                zOpt = Zopt.vypocetZOpt(k, j, x0, y0, m, z0, rf, aH, bH);
+                System.out.flush();
+                System.setOut(povodnyVystup);
+            } while (!jeCeleCislo(zOpt));
+            System.out.println("Vygenerované číslo x0: " + x0);
+            System.out.println("Vygenerované číslo y0: " + y0);
+            System.out.println("Vygenerované číslo z0: " + z0);
+        }
         Zopt.vypocetZOpt(k,j,x0,y0,m,z0,rf,aH,bH);
     }
+    public static boolean jeCeleCislo(double number) {
+        return number == (int) number;
+    }
+
+    public static int generovanieNahodnychCisel() {
+        Random random = new Random();
+        return random.nextInt(501) * -1;
+    }
+
 
 }

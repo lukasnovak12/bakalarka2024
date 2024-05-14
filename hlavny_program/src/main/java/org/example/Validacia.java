@@ -4,29 +4,39 @@ import java.util.Scanner;
 
 public class Validacia {
 
-    public static double validaciaVstupov(Scanner scanner, String message) {
-        double input;
+    public static double validaciaVstupovA(Scanner scanner, String message) {
+        double input=0;
+        boolean validnyVstup = false;
+
         do {
             System.out.println(message);
-            input = scanner.nextDouble();
+            String vstup = scanner.nextLine();
 
-            if (input < 0) {
-                System.out.println("Hodnota nemôže byť záporná. Zadajte ju znova.");
+            try {
+                input = Double.parseDouble(vstup);
+                if (input < 0) {
+                    System.out.println("Hodnota nemôže byť záporná. Zadajte ju znova.");
+                } else {
+                    validnyVstup = true;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Neplatný vstup! Zadajte číslo.");
             }
-        } while (input < 0);
+        } while (!validnyVstup);
+
         return input;
     }
 
-    public static double validaciaVstupovCasNula(Scanner scanner, String message) {
-        double input;
+    public static double validaciaVstupovB(Scanner scanner, String message) {
+        double vstup;
         do {
             System.out.println(message);
-            input = scanner.nextDouble();
+            vstup = scanner.nextDouble();
 
-            if (input > 0) {
+            if (vstup > 0) {
                 System.out.println("Hodnota nemôže byť kladná. Zadajte ju znova.");
             }
-        } while (input > 0);
-        return input;
+        } while (vstup > 0);
+        return vstup;
     }
 }
