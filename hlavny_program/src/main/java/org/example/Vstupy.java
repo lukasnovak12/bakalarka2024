@@ -11,9 +11,9 @@ public class Vstupy {
     double bD;
     double rf;
     double m;
-    double x0=0;
-    double y0=0;
-    double z0=0;
+    double x0;
+    double y0;
+    double z0;
     String input;
     public Vstupy() {
 
@@ -36,10 +36,12 @@ public class Vstupy {
         System.out.println("Chcete si zadať premenné x0,y0,z0 svoje, alebo chcete aby ich program vygeneroval ?\n" +
                 "Pokiaľ áno stlačte 'y' pokiaľ nie stlačte 'n'. ");
         input=scanner.next();
+
         while (!input.equals("y") && !input.equals("n") ){
             System.out.println("Neplatná odpoveď ! Zadajte odpoveď znova:");
             input= scanner.next();
         }
+
         if (input.equals("n")) {
             y0 = Validacia.validaciaVstupovB(scanner, "Zadajte hodnotu počtu akcií B, ktoré vlastníte v čase 0:");
             x0 = Validacia.validaciaVstupovB(scanner, "Zadajte hodnotu počtu akcií A, ktoré vlastníte v čase 0:");
@@ -82,7 +84,6 @@ public class Vstupy {
     public double getX0() {
         return x0;
     }
-
 
     public double getY0() {
         return y0;

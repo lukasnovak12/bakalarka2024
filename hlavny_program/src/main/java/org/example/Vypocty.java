@@ -65,41 +65,9 @@ public class Vypocty {
         vysledky = Zisk.VypocetZisk(x,zX,y,zY,aD,bD,aPociatok,bPociatok,m);
         System.out.println("Výsledok zisku z pravej strany rovnice(udalosť D): " + vysledky.getVysledok1());
         System.out.println("Výsledok Z zo zisku z pravej strany rovnice(udalosť D): " + vysledky.getVysledok2());
-        // opatavone preratanie pre vypocet J (nebolo by treba prepocitavat pokial dosadime do vzorca vyjde rovnako,
-        //ale pre vypocet v mensich hodnotach na papieri je to jednoduchsie) priklad: 55/50 = 1,1x atd.
-        x= (aH  / aPociatok);
-        y= (bH   / bPociatok);
-        x2 =(aD  / aPociatok);
-        y2=(bD   / bPociatok);
-        double j = ((x * y2 - x2 * y - (x - x2) - (y2 - y)) / (x - x2 + y2 - y)); //vypocet j
-        System.out.println("J = "+j);
+        // vypocet  J
+        double j = HodnotaJ.vypocetAVypisJ(vstupy.getaPociatok(),vstupy.getbPociatok(),vstupy.getaH(),vstupy.getbH(),vstupy.getaD(),vstupy.getbD(),vstupy.getRf());
 
-        if(rf > j && j > 0 || j < 0 && 0 < rf){
-
-            if(j > 0){
-                System.out.println("Výsledok J je síce väčší ako 0 ale nieje väčší ako úroková miera\n" +
-                        "dlhopisu preto maximalizujeme z = m. Poprípade keď vlastníme nejaké akcie A,B v čase 0 ,\n " +
-                        "môžeme ich predať a naspäť nakúpiť v čase 1. Zisk bude stále väčší tým, že z -> "+'∞');
-            }
-            if(j < 0){
-                System.out.println("Hodnoty x, y by pri investovaní do akcií bolo za účelom\n" +
-                        "eliminácie rizika potrebné voliť tak, aby x + y < 0 p.j");
-            }
-        }
-        if (j > rf && rf > 0){
-            System.out.println("Investícia x p.j. do akcií A a y p.j. do akcií B by musela byť\n" +
-                    "uskutočnená tak, aby x + y > 0 p.j. Tento prípad však umožňuje investorovi potenciálne\n" +
-                    "neobmedzený nárast zisku voľbou z → −∞ na elimináciu rizika. Výška zisku závisí od toho,\n" +
-                    "koľko je investor schopný vypísať a predať v čase 0 dlhopisov na získanie finančných\n" +
-                    "prostriedkov potrebných na nákup akcií v zodpovedajúcom riziko eliminačnom pomere.\n" +
-                    "Platí 0 < x + y = m − z p.j");
-        }
-        if(j == 0){
-            System.out.println("V špeciálnom prípade, v ktorom J = 0, nákup/predaj akcií v zodpovedajú-\n" +
-                    "com riziko eliminujúcom pomere neprináša žiadne dodatočné finančné odmeny a\n" +
-                    "preto sa investori snažia všetky dostupné finančné prostriedky investovať do ná-\n" +
-                    "kupu dlhopisov.");
-        }
         //pokial si uzivatel vybral generovanie cisel pre x0,y0,z0 tak sa tento kod uskutocni, v kode je generovanie cisel
         //nasledna kontrola ci je cislo cele a ukladanie a mazanie terminalu pre rovnake vypisi. aby nebolo treba robit novu metodu pre
         //zOpt bez vypisov premaze vzdy len vystup z metody
