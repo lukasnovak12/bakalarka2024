@@ -21,7 +21,7 @@ public class Vypocty {
         double z0 = vstupy.getZ0();
 
         //premene s ktorymi pracuje program
-        double x ,y,zX=1,zY=1 ,x2 , y2;
+        double x ,y,zX,zY ,x2 , y2;
         // Výpočet hodnoty lavej strany  z rovnice eliminácie rizika
         // double vysledok = (aH  / aH_initial) * x + (bH   / bH_initial) * y + (1 + rf) * z - m;
         // vypocet ako pri pocitani ked je ah 55 a ah initial 50 tak vysledok je 1,1. je to koli
@@ -37,28 +37,18 @@ public class Vypocty {
             return;
         }
 
-        double k = ( (bD - bH) / (aH - aD)); // vypocet k
+        double k = ( (y2 - y) / (x - x2)); // vypocet k
+        k = Math.round(k * 1000.0) / 1000.0;
         System.out.println("K = "+k);
 
         //zvysne vypocty podla vzorca x = ( bD − bH / aH − aD )y
+        x= (k / (1+k));
+        y= (1/ (1+k));
+        zX=m*x;
+        zY=m*y;
+        System.out.println("x = "+x);
+        System.out.println("y = "+y);
 
-        x=x-x2;
-        y2 = y2-y;
-        x= y2/x;//vysledok x = ( bD − bH / aH − aD )y
-        //vypocet y kedze x uz pozname
-        //y=1 pre otocenie zlomku a vyuzitie premennej
-        y = 1;
-        y=x+y;
-        // Preklopenie zlomku a prehodenie na pravu stranu
-        y=1/y;
-        zY= -zY * y;
-        //zbytok vypoctov pre y
-        y=y*m;
-        //zaokruhlenie pre y*m (vysledok 4/7 * 7000 bolo 3999,99) preto to zaokruhlenie na cele cislo (priklad)
-        y=Math.round(y);
-        //pre x
-        x=m-y;
-        zX=-zX-zY;
         Vysledky vysledky = Zisk.VypocetZisk(x,zX,y,zY,aH,bH,aPociatok,bPociatok,m);
         System.out.println("Výsledok zisku z lavej strany rovnice(udalosť H): " + vysledky.getVysledok1());
         System.out.println("Výsledok Z zo zisku z lavej strany rovnice(udalosť H): " + vysledky.getVysledok2());
