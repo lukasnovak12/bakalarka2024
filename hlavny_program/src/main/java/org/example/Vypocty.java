@@ -20,6 +20,7 @@ public class Vypocty {
         double y0 = vstupy.getY0();
         double z0 = vstupy.getZ0();
 
+
         //premene s ktorymi pracuje program
         double x ,y,zX,zY ,x2 , y2;
         // Výpočet hodnoty lavej strany  z rovnice eliminácie rizika
