@@ -17,12 +17,7 @@ public class Vstupy {
     String input;
     public Vstupy() {
 
-        // Uvítacie privítanie
-        System.out.println("Vitajte v programe na vyhodnotenie podmienok investícií do akcii a dlhopisov.");
-        System.out.println("Po stlačení Enter začnite zadávať hodnoty.");
         Scanner scanner = new Scanner(System.in);
-        // Čakanie na stlačenie Enter
-        scanner.nextLine();
 
         aPociatok = Validacia.validaciaVstupovA(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
         bPociatok = Validacia.validaciaVstupovA(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:");

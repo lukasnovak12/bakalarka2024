@@ -17,15 +17,15 @@ public class Zopt {
                     yOpt = y0;
                     System.out.println("Ak x0 = ky0, tak zopt = m − x0 − y0, xopt = x0, yopt = y0.");
                 } else if (x0 > k*y0) {
-                    zOpt = m - (1+k) * x0 / k;
+                    zOpt = m - ((1+k)/k) * x0 ;
                     xOpt = x0;
                     yOpt = x0/k;
-                    System.out.println("Ak x0 > ky0, tak zopt = m − (( 1+k)x0/k), xopt = x0, yopt = x0/k > y0.");
+                    System.out.println("Ak x0 > ky0, tak zopt = m − (((1+k)/k) * x0), xopt = x0, yopt = x0/k > y0.");
                 }else if (x0<k * y0) {
                     zOpt = m - (1 + k) * y0;
                     xOpt = k * y0;
                     yOpt = y0;
-                    System.out.println("Ak x0 < ky0, tak zopt = m − (1 + k) y0, xopt = ky0 > x0, yopt = y0.");
+                    System.out.println("Ak x0 < ky0, tak zopt = m − (1 + k) * y0, xopt = ky0 > x0, yopt = y0.");
                 }
                 System.out.println("zOpt = "+zOpt+"\nyOpt = "+yOpt+"\nxOpt = "+xOpt);
             } else if (k < -1) {
@@ -72,11 +72,11 @@ public class Zopt {
                     xOpt = k * yOpt;
                     System.out.println("Predpokladajme , že y0 ≤ ( 1/1+k)*(m − z0). Potom maximom je z0 a preto zopt = z0");
 
-                } else if ((1 / (1 + k)) * (m - z0)<y0 && y0 <= 0){
+                } else if ((1 / (1 + k)) * (m - z0) < y0 && y0 <= 0){
                     zOpt = m - (1 + k) * y0;
                     xOpt = k * y0;
                     yOpt=y0;
-                    System.out.println("Pokiaľ neplatí , že y0 ≤ ( 1/1+k)*(m − z0) ,tak maximom  je v tomto prípade m − (1 + k)y0.");
+                    System.out.println("Pokiaľ neplatí , že y0 ≤ (1/(1+k))*(m − z0) ,tak maximom  je v tomto prípade m − (1 + k)y0.");
                     System.out.println("zOpt = "+zOpt);
                     }
                 else if(y0 == 0 ){
