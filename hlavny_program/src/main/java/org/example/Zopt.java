@@ -29,44 +29,83 @@ public class Zopt {
                 }
                 System.out.println("zOpt = "+zOpt+"\nyOpt = "+yOpt+"\nxOpt = "+xOpt);
             } else if (k < -1) {
-                zOpt= m-((1+k)*x0/k);
+                zOpt= m-(((1+k)/k) * x0);
+                xOpt=x0;
+                yOpt=x0/k;
                 System.out.println("Investor dokáže navíšit svoj arbitrážny zisk prostredníctvom penažných" +
                         "prostriedkov získanych z predaja akcie A v čase 0 . V prípade, že nieje schopný využiť vzniknutú" +
                         "arbitrážnu príležitost, pretože nevlastní žiadne akcie A v čase  0 ,ktoré mohol predať, jeho zisk bude rovný rfm.");
                 System.out.println("zOpt = "+zOpt);
+                System.out.println("xOpt = "+xOpt);
+                System.out.println("yOpt = "+yOpt);
             } else if (-1 < k && k < 0){ // -1 < k < 0
-            zOpt=m-(1+k)*y0;
+                zOpt=m-(1+k)*y0;
+                xOpt=k*y0;
+                yOpt=y0;
                 System.out.println("Investor dokáže navíšit svoj arbitrážny zisk prostredníctvom penažných" +
                         "prostriedkov získanych z predaja akcie B v čase 0 . V prípade, že nieje schopný využiť vzniknutú" +
                         "arbitrážnu príležitost, pretože nevlastní žiadne akcie B v čase  0, ktoré mohol predať, jeho zisk bude rovný rfm");
                 System.out.println("zOpt = "+zOpt);
+                System.out.println("xOpt = "+xOpt);
+                System.out.println("yOpt = "+yOpt);
             }
         } else if(k != -1 && j>rf){
             if (k > 0) {
-                zOpt = z0;
+                if (z0 == 0) {
+                    zOpt = 0;
+                    xOpt = (k * m) / (1 + k);
+                    yOpt = m / (1 + k);
+
+                }else if (z0 < 0) {
+                    zOpt = z0;
+                    xOpt = (k / (1 + k)) * (m - z0);
+                    yOpt = (1 / (1 + k)) * (m - z0);}
                 System.out.println("Ak k>0 pri k != -1 && j>rf, potom maximom je z0 < 0, a pre investora je podstatné to, či dokáže" +
                         "svoj arbitrážny zisk navýšiť predajom vypísaných dlhopisov v čase 0 . ");
-                System.out.println("zOpt = "+zOpt);
+                System.out.println("zOpt = " + zOpt);
+                System.out.println("xOpt = " + xOpt);
+                System.out.println("yOpt = " + yOpt);
             } else if (k < -1) {
                 if (y0 <= (1 / (1 + k)) * (m - z0)) {
                     zOpt = z0;
+                    yOpt = (1/(1+k))  * (m - z0);
+                    xOpt = k * yOpt;
                     System.out.println("Predpokladajme , že y0 ≤ ( 1/1+k)*(m − z0). Potom maximom je z0 a preto zopt = z0");
-                    System.out.println("zOpt = "+zOpt);
-                } else {
+
+                } else if ((1 / (1 + k)) * (m - z0)<y0 && y0 <= 0){
                     zOpt = m - (1 + k) * y0;
+                    xOpt = k * y0;
+                    yOpt=y0;
                     System.out.println("Pokiaľ neplatí , že y0 ≤ ( 1/1+k)*(m − z0) ,tak maximom  je v tomto prípade m − (1 + k)y0.");
                     System.out.println("zOpt = "+zOpt);
                     }
-                } else{ // -1 < k < 0
+                else if(y0 == 0 ){
+                    xOpt= 0;
+                    yOpt = 0;
+                    zOpt = m;
+                }
+                System.out.println("zOpt = " + zOpt);
+                System.out.println("xOpt = " + xOpt);
+                System.out.println("yOpt = " + yOpt);
+                } else if (-1 < k && k < 0){ // -1 < k < 0
                     if (x0 <= (k / (1 + k)) * (m - z0)) {
                         zOpt = z0;
+                        xOpt=(k/(1+k))*(m-z0);
+                        yOpt=xOpt/k;
                         System.out.println("Ak platí x0 ≤ ( k/1+k)*(m − z0) tak potom maximom je z0 a preto volíme zopt=z0");
-                        System.out.println("zOpt = "+zOpt);
-                    } else {
-                        zOpt = m - (1 + k) * x0 / k;
+                    } else if( ( (k/(1+k)) * (m-z0) ) < x0 && x0 < 0 ){
+                        zOpt = m - (((1 + k)/k) * x0 );
+                        xOpt= x0;
+                        yOpt = x0/k;
                         System.out.println("Dostávame zopt = m − ( 1+k/k )*x0");
-                        System.out.println("zOpt = "+zOpt);
+                    } else if(x0 == 0 ){
+                        xOpt= 0;
+                        yOpt = 0;
+                        zOpt = m;
                     }
+                    System.out.println("zOpt = " + zOpt);
+                    System.out.println("xOpt = " + xOpt);
+                    System.out.println("yOpt = " + yOpt);
                 }
             }
         else{ // k = -1 alebo rf <= 0

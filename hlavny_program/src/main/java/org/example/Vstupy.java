@@ -43,10 +43,11 @@ public class Vstupy {
         }
 
         if (input.equals("n")) {
-            y0 = Validacia.validaciaVstupovB(scanner, "Zadajte hodnotu počtu akcií B, ktoré vlastníte v čase 0:");
-            x0 = Validacia.validaciaVstupovB(scanner, "Zadajte hodnotu počtu akcií A, ktoré vlastníte v čase 0:");
-            z0 = Validacia.validaciaVstupovB(scanner, "Zadajte hodnotu počtu dlhopisov, ktoré vlastníte v čase 0:");
+            x0 = Validacia.validaciaVstupovB(scanner, "Zadajte, koľko finančných prostriedkov máte v čase 0 v akcií A:");
+            y0 = Validacia.validaciaVstupovB(scanner, "Zadajte, koľko koľko finančných prostriedkov máte v čase 0 v akcií B:");
+            z0 = Validacia.validaciaVstupovB(scanner, "Zadajte , koľko si dokážete emitáciou dlhopisov v čase 0 požičať:");
         }
+
     }
 
     public double getaPociatok() {
