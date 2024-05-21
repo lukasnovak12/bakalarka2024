@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Vypocty {
+
     public Vypocty() {
         // Uvítacie privítanie
         System.out.println("Vitajte v programe na vyhodnotenie podmienok investícií do akcii a dlhopisov.");
@@ -13,7 +14,6 @@ public class Vypocty {
         Scanner scanner = new Scanner(System.in);
         // Čakanie na stlačenie Enter
         scanner.nextLine();
-
         boolean repeat;
         do {
             Vstupy vstupy = new Vstupy();
@@ -45,7 +45,7 @@ public class Vypocty {
             y2=(bD   / bPociatok);
 
             if (!KontrolaP.kontrolaPodmienok(x, x2, y, y2, rf)){
-                return;
+                 new Vypocty();
             }
 
             double k = ( (y2 - y) / (x - x2)); // vypocet k
@@ -89,9 +89,9 @@ public class Vypocty {
                     System.setOut(novyVystup);
                     System.out.print("\033[H\033[2J");
                     System.out.flush();
-                    x0 = generovanieNahodnychCisel();
-                    y0 = generovanieNahodnychCisel();
-                    z0 = generovanieNahodnychCisel();
+                    x0 = generovanieNahodnychCisel((int)m);
+                    y0 = generovanieNahodnychCisel((int)m);
+                    z0 = generovanieNahodnychCisel((int)m);
                     zOpt = Zopt.vypocetZOpt(k, j, x0, y0, m, z0, rf, vstupy.getaH()/vstupy.getaPociatok(), vstupy.getbH()/vstupy.getbPociatok());
                     System.out.flush();
                     System.setOut(povodnyVystup);
@@ -112,8 +112,9 @@ public class Vypocty {
         return number == (int) number;
     }
 
-    public static int generovanieNahodnychCisel() {
+    public static int generovanieNahodnychCisel(int m) {
         Random random = new Random();
-        return random.nextInt(501) * -1;
+        int cislo = random.nextInt(m/100 + 1);
+        return (cislo *100)*(-1);
     }
 }
