@@ -13,10 +13,20 @@ public class KontrolaP {
             return true;
         } else if ((aH > 1 + rf && 1 + rf > 1 && 1 > aD) && (bH > 1 + rf && 1 + rf > 1 && 1 > bD)) {
             // Akcia pre podmienku 3
+            if((aH - bH < 0 && 0 < aD - bD) || (aH - bH > 0 && 0 > aD - bD) ){
+                System.out.println("Pri vstupoch, ktoré boli zadané, bola porušená podmienka nadmerného" +
+                        "vychýlenia z trhovej rovnováhy. Zadajte hodnoty odznova.");
+                return false;
+            }
             System.out.println("Podmienka 3 bola splnená. Vykonávam akciu pre podmienku 3.");
             return true;
         } else if ((aH < 1 && 1 < 1 + rf && 1 + rf < aD) && (bH < 1 && 1 < 1 + rf && 1 + rf < bD)) {
             // Akcia pre podmienku 4
+            if((aH - bH < 0 && 0 < aD - bD) || (aH - bH > 0 && 0 > aD - bD) ){
+                System.out.println("Pri vstupoch, ktoré boli zadané, bola porušená podmienka nadmerného" +
+                        "vychýlenia z trhovej rovnováhy. Zadajte hodnoty odznova.");
+                return false;
+            }
             System.out.println("Podmienka 4 bola splnená. Vykonávam akciu pre podmienku 4.");
             return true;
         } else {

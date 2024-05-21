@@ -32,7 +32,7 @@ public class Vypocty {
 
 
             //premene s ktorymi pracuje program
-            double x ,y,zX,zY ,x2 , y2;
+            double x ,y,zX=0,zY=0 ,x2 , y2;
             // Výpočet hodnoty lavej strany  z rovnice eliminácie rizika
             // double vysledok = (aH  / aH_initial) * x + (bH   / bH_initial) * y + (1 + rf) * z - m;
             // vypocet ako pri pocitani ked je ah 55 a ah initial 50 tak vysledok je 1,1. je to koli
@@ -53,13 +53,17 @@ public class Vypocty {
             System.out.println("K = "+k);
 
             //zvysne vypocty podla vzorca x = ( bD − bH / aH − aD )y
-            x= (k / (1+k));
-            y= (1/ (1+k));
-            zX=m*x;
-            zY=m*y;
-            System.out.println("x = "+x);
-            System.out.println("y = "+y);
-
+            if (k == -1){
+                System.out.println("x = Nie je možné deliť nulou.");
+                System.out.println("y = Nie je možné deliť nulou.");
+            }else {
+                x = (k / (1 + k));
+                y = (1 / (1 + k));
+                zX = m * x;
+                zY = m * y;
+                System.out.println("x = " + x);
+                System.out.println("y = " + y);
+            }
             Vysledky vysledky = Zisk.VypocetZisk(x,zX,y,zY,aH,bH,aPociatok,bPociatok,m);
             System.out.println("Výsledok zisku z lavej strany rovnice(udalosť H): " + vysledky.getVysledok1());
             System.out.println("Výsledok Z zo zisku z lavej strany rovnice(udalosť H): " + vysledky.getVysledok2());
