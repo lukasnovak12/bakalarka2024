@@ -51,7 +51,6 @@ public class Vypocty {
             double k = ( (y2 - y) / (x - x2)); // vypocet k
             k = Math.round(k * 1000.0) / 1000.0;
             System.out.println("K = "+k);
-
             //zvysne vypocty podla vzorca x = ( bD − bH / aH − aD )y
             if (k == -1){
                 System.out.println("x = Nie je možné deliť nulou.");

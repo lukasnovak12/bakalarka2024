@@ -1,6 +1,6 @@
 package org.example;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Vstupy {
     double aPociatok;
@@ -16,7 +16,6 @@ public class Vstupy {
     double z0;
     String input;
     public Vstupy() {
-
         Scanner scanner = new Scanner(System.in);
 
         aPociatok = Validacia.validaciaVstupovA(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");

@@ -77,7 +77,6 @@ public class Zopt {
                     xOpt = k * y0;
                     yOpt=y0;
                     System.out.println("Pokiaľ neplatí , že y0 ≤ (1/(1+k))*(m − z0) ,tak maximom  je v tomto prípade m − (1 + k)y0.");
-                    System.out.println("zOpt = "+zOpt);
                     }
                 else if(y0 == 0 ){
                     xOpt= 0;
