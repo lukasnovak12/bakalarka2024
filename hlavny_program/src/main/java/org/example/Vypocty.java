@@ -32,7 +32,7 @@ public class Vypocty {
 
 
             //premene s ktorymi pracuje program
-            double x ,y,zX=0,zY=0 ,x2 , y2;
+            double x ,y,zX,zY,x2,y2;
             // Výpočet hodnoty lavej strany  z rovnice eliminácie rizika
             // double vysledok = (aH  / aH_initial) * x + (bH   / bH_initial) * y + (1 + rf) * z - m;
             // vypocet ako pri pocitani ked je ah 55 a ah initial 50 tak vysledok je 1,1. je to koli
@@ -58,27 +58,18 @@ public class Vypocty {
             }else {
                 x = (k / (1 + k));
                 y = (1 / (1 + k));
-                zX = m * x;
-                zY = m * y;
                 System.out.println("x = " + x);
                 System.out.println("y = " + y);
             }
-            Vysledky vysledky = Zisk.VypocetZisk(x,zX,y,zY,aH,bH,aPociatok,bPociatok,m);
-            System.out.println("Výsledok zisku z lavej strany rovnice(udalosť H): " + vysledky.getVysledok1());
-            System.out.println("Výsledok Z zo zisku z lavej strany rovnice(udalosť H): " + vysledky.getVysledok2());
-            vysledky = Zisk.VypocetZisk(x,zX,y,zY,aD,bD,aPociatok,bPociatok,m);
-            System.out.println("Výsledok zisku z pravej strany rovnice(udalosť D): " + vysledky.getVysledok1());
-            System.out.println("Výsledok Z zo zisku z pravej strany rovnice(udalosť D): " + vysledky.getVysledok2());
+
             // vypocet  J
             double j = HodnotaJ.vypocetAVypisJ(vstupy.getaPociatok(),vstupy.getbPociatok(),vstupy.getaH(),vstupy.getbH(),vstupy.getaD(),vstupy.getbD(),vstupy.getRf());
 
-            if (j==rf){
-                return;
-            }
+
             //pokial si uzivatel vybral generovanie cisel pre x0,y0,z0 tak sa tento kod uskutocni, v kode je generovanie cisel
             //nasledna kontrola ci je cislo cele a ukladanie a mazanie terminalu pre rovnake vypisi. aby nebolo treba robit novu metodu pre
             //zOpt bez vypisov premaze vzdy len vystup z metody
-            double  zOpt;
+            Vysledky zOpt;
             String vstup = vstupy.getInput();
             if (vstup.equals("y")) {
                 do {
@@ -94,13 +85,22 @@ public class Vypocty {
                     zOpt = Zopt.vypocetZOpt(k, j, x0, y0, m, z0, rf, vstupy.getaH()/vstupy.getaPociatok(), vstupy.getbH()/vstupy.getbPociatok());
                     System.out.flush();
                     System.setOut(povodnyVystup);
-                } while (!jeCeleCislo(zOpt));
+                } while (!jeCeleCislo(zOpt.getVysledok3()));
                 System.out.println("Vygenerované číslo x0: " + x0);
                 System.out.println("Vygenerované číslo y0: " + y0);
                 System.out.println("Vygenerované číslo z0: " + z0);
             }
-            Zopt.vypocetZOpt(k,j,x0,y0,m,z0,rf,vstupy.getaH()/vstupy.getaPociatok(),vstupy.getbH()/vstupy.getbPociatok());
-                System.out.print("Chcete zadať iný príklad? (´y´ pre áno / ´n´ pre nie): ");
+            zOpt=Zopt.vypocetZOpt(k,j,x0,y0,m,z0,rf,vstupy.getaH()/vstupy.getaPociatok(),vstupy.getbH()/vstupy.getbPociatok());
+            zX = x * zOpt.getVysledok3();
+            zY = y * zOpt.getVysledok3();
+            //20 10 24 16 8 14 0.03 2000
+            Vysledky vysledky = Zisk.VypocetZisk(x,zX,y,zY,aH,bH,aPociatok,bPociatok,zOpt.getVysledok3());
+            System.out.println("Výsledok lavej strany rovnice(udalosť H): " + vysledky.getVysledok1());
+            System.out.println("Výsledok Z zo zisku z lavej strany rovnice(udalosť H): " + vysledky.getVysledok2());
+            vysledky = Zisk.VypocetZisk(x,zX,y,zY,aD,bD,aPociatok,bPociatok, zOpt.getVysledok3());
+            System.out.println("Výsledok zisku z pravej strany rovnice(udalosť D): " + vysledky.getVysledok1());
+            System.out.println("Výsledok Z zo zisku z pravej strany rovnice(udalosť D): " + vysledky.getVysledok2());
+            System.out.print("Chcete zadať iný príklad? (´y´ pre áno / ´n´ pre nie): ");
                 String response = scanner.next();
 
                 repeat = response.equalsIgnoreCase("y");

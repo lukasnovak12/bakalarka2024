@@ -16,6 +16,6 @@ public class Zisk {
         v1=Math.round(v1);
 
 
-        return new Vysledky(v,v1);
+        return new Vysledky(v,v1,0);
         }
 }

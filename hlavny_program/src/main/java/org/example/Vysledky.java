@@ -3,10 +3,17 @@ package org.example;
 public class Vysledky {
     private final double vysledok1;
     private final double vysledok2;
+    private final double vysledok3;
 
-    public Vysledky(double result1, double result2) {
-        this.vysledok1 = result1;
-        this.vysledok2 = result2;
+
+    public Vysledky(double vysledok1, double vysledok2, double vysledok3) {
+        this.vysledok1 = vysledok1;
+        this.vysledok2 = vysledok2;
+        this.vysledok3 = vysledok3;
+    }
+
+    public double getVysledok3() {
+        return vysledok3;
     }
 
     public double getVysledok1() {

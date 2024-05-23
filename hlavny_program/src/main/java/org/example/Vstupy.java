@@ -18,14 +18,14 @@ public class Vstupy {
     public Vstupy() {
         Scanner scanner = new Scanner(System.in);
 
-        aPociatok = Validacia.validaciaVstupovA(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:");
-        bPociatok = Validacia.validaciaVstupovA(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:");
-        aH = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej aH:");
-        aD = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej aD:");
-        bH = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej bH:");
-        bD = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej bD:");
-        rf = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej rf:");
-        m = Validacia.validaciaVstupovA(scanner, "Zadajte hodnotu premennej m:");
+        aPociatok = Validacia.validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:",true);
+        bPociatok = Validacia.validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:",true);
+        aH = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej aH:",true,aPociatok);
+        aD = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej aD:",true,aPociatok);
+        bH = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej bH:",true,bPociatok);
+        bD = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:",true,bPociatok);
+        rf = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:",true);
+        m = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej m:",true);
 
         System.out.println("Chcete si zadať premenné x0,y0,z0 svoje, alebo chcete aby ich program vygeneroval ?\n" +
                 "Pokiaľ áno stlačte 'y' pokiaľ nie stlačte 'n'. ");
@@ -37,9 +37,9 @@ public class Vstupy {
         }
 
         if (input.equals("n")) {
-            x0 = Validacia.validaciaVstupovB(scanner, "Zadajte, koľko finančných prostriedkov máte v čase 0 v akcií A:");
-            y0 = Validacia.validaciaVstupovB(scanner, "Zadajte, koľko koľko finančných prostriedkov máte v čase 0 v akcií B:");
-            z0 = Validacia.validaciaVstupovB(scanner, "Zadajte , koľko si dokážete emitáciou dlhopisov v čase 0 požičať:");
+            x0 = Validacia.validaciaVstupov(scanner, "Zadajte, koľko finančných prostriedkov máte v čase 0 v akcií A:",false);
+            y0 = Validacia.validaciaVstupov(scanner, "Zadajte, koľko koľko finančných prostriedkov máte v čase 0 v akcií B:",false);
+            z0 = Validacia.validaciaVstupov(scanner, "Zadajte , koľko si dokážete emitáciou dlhopisov v čase 0 požičať:",false);
         }
 
     }

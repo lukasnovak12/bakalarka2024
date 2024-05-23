@@ -2,7 +2,7 @@ package org.example;
 
 public class Zopt {
 
-    public static double vypocetZOpt(double k,double j, double x0, double y0, double m,double z0, double rf,double aH, double bH) {
+    public static Vysledky vypocetZOpt(double k,double j, double x0, double y0, double m,double z0, double rf,double aH, double bH) {
         double zOpt = 0.0;
         double xOpt = 0.0;
         double yOpt = 0.0;
@@ -32,8 +32,8 @@ public class Zopt {
                 zOpt= m-(((1+k)/k) * x0);
                 xOpt=x0;
                 yOpt=x0/k;
-                System.out.println("Investor dokáže navíšit svoj arbitrážny zisk prostredníctvom penažných" +
-                        "prostriedkov získanych z predaja akcie A v čase 0 . V prípade, že nieje schopný využiť vzniknutú" +
+                System.out.println("Investor dokáže navíšit svoj arbitrážny zisk prostredníctvom penažných " +
+                        "prostriedkov získanych z predaja akcie A v čase 0 . V prípade, že nieje schopný využiť vzniknutú " +
                         "arbitrážnu príležitost, pretože nevlastní žiadne akcie A v čase  0 ,ktoré mohol predať, jeho zisk bude rovný rfm.");
                 System.out.println("zOpt = "+zOpt);
                 System.out.println("xOpt = "+xOpt);
@@ -70,15 +70,15 @@ public class Zopt {
                     zOpt = z0;
                     yOpt = (1/(1+k))  * (m - z0);
                     xOpt = k * yOpt;
-                    System.out.println("Predpokladajme , že y0 ≤ ( 1/1+k)*(m − z0). Potom maximom je z0 a preto zopt = z0");
+                    System.out.println("Predpokladajme , že y0 ≤ ( 1/1+k)*(m − z0) < 0 . Potom maximom je z0 a preto zopt = z0");
 
                 } else if ((1 / (1 + k)) * (m - z0) < y0 && y0 <= 0){
                     zOpt = m - (1 + k) * y0;
                     xOpt = k * y0;
                     yOpt=y0;
-                    System.out.println("Pokiaľ neplatí , že y0 ≤ (1/(1+k))*(m − z0) ,tak maximom  je v tomto prípade m − (1 + k)y0.");
+                    System.out.println("Predpokladajme , že  ( 1/1+k)*(m − z0) < y0 <= 0 ,tak maximom  je v tomto prípade m − (1 + k)y0.");
                     }
-                else if(y0 == 0 ){
+                else if(y0 == 0){
                     xOpt= 0;
                     yOpt = 0;
                     zOpt = m;
@@ -96,7 +96,7 @@ public class Zopt {
                         zOpt = m - (((1 + k)/k) * x0 );
                         xOpt= x0;
                         yOpt = x0/k;
-                        System.out.println("Dostávame zopt = m − ( 1+k/k )*x0");
+                        System.out.println("Ak (k/(1+k)) * (m-z0) ), potom dostávame zopt = m − ( 1+k/k )*x0");
                     } else if(x0 == 0 ){
                         xOpt= 0;
                         yOpt = 0;
@@ -131,6 +131,6 @@ public class Zopt {
                 System.out.println("yOpt = " + yOpt);
             }
         }
-        return zOpt;
+        return new Vysledky(xOpt,yOpt,zOpt);
     }
 }

@@ -2,6 +2,9 @@ package org.example;
 
 public class KontrolaP {
     public static boolean kontrolaPodmienok(double aH, double aD, double bH, double bD, double rf) {
+        boolean predpoklad1 = (aH - bH < 0 && 0 < aD - bD);
+        boolean predpoklad2 = (aH - bH > 0 && 0 > aD - bD);
+        boolean b = predpoklad1 || predpoklad2;
         // Kontrola podmienok
         if ((aH > 1 + rf && 1 + rf > 1 && 1 > aD) && (bH < 1 && 1 < 1 + rf && 1 + rf < bD)) {
             // Akcia pre podmienku 1
@@ -13,8 +16,8 @@ public class KontrolaP {
             return true;
         } else if ((aH > 1 + rf && 1 + rf > 1 && 1 > aD) && (bH > 1 + rf && 1 + rf > 1 && 1 > bD)) {
             // Akcia pre podmienku 3
-            if((aH - bH < 0 && 0 < aD - bD) || (aH - bH > 0 && 0 > aD - bD) ){
-                System.out.println("Pri vstupoch, ktoré boli zadané, bola porušená podmienka nadmerného" +
+            if(!b){
+                System.out.println("Pri vstupoch, ktoré boli zadané, bola porušená podmienka nadmerného " +
                         "vychýlenia z trhovej rovnováhy. Zadajte hodnoty odznova.");
                 return false;
             }
@@ -22,8 +25,8 @@ public class KontrolaP {
             return true;
         } else if ((aH < 1 && 1 < 1 + rf && 1 + rf < aD) && (bH < 1 && 1 < 1 + rf && 1 + rf < bD)) {
             // Akcia pre podmienku 4
-            if((aH - bH < 0 && 0 < aD - bD) || (aH - bH > 0 && 0 > aD - bD) ){
-                System.out.println("Pri vstupoch, ktoré boli zadané, bola porušená podmienka nadmerného" +
+            if(!b){
+                System.out.println("Pri vstupoch, ktoré boli zadané, bola porušená podmienka nadmerného " +
                         "vychýlenia z trhovej rovnováhy. Zadajte hodnoty odznova.");
                 return false;
             }
