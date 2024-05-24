@@ -17,7 +17,7 @@ public class Vstupy {
     String input;
     public Vstupy() {
         Scanner scanner = new Scanner(System.in);
-
+        //zadavanie pociatocnych hodnot, pred zapisanim hodnoty do premenej je najprv uskutocnena validacia hodnoty
         aPociatok = Validacia.validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie A pred udalosťami:",true);
         bPociatok = Validacia.validaciaVstupov(scanner, "Zadajte počiatočnú hodnotu akcie B pred udalosťami:",true);
         aH = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej aH:",true,aPociatok);
@@ -26,7 +26,7 @@ public class Vstupy {
         bD = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:",true,bPociatok);
         rf = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:",true);
         m = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej m:",true);
-
+        //otazka, ci chceme alebo nechceme vygenerovat hodnoty pociatocnych investicii v akciach a dlhopisoch
         System.out.println("Chcete si zadať premenné x0,y0,z0 svoje, alebo chcete aby ich program vygeneroval ?\n" +
                 "Pokiaľ áno stlačte 'y' pokiaľ nie stlačte 'n'. ");
         input=scanner.next();
@@ -43,7 +43,7 @@ public class Vstupy {
         }
 
     }
-
+    //gettery a settery
     public double getaPociatok() {
         return aPociatok;
     }

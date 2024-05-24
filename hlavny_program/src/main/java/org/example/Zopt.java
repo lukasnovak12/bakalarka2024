@@ -7,8 +7,8 @@ public class Zopt {
         double xOpt = 0.0;
         double yOpt = 0.0;
 
-        if (k != -1 && j<rf) {
-            if (k > 0) {
+        if (k != -1 && j<rf) { // pokial sa k != -1 a zaroven je j<rf
+            if (k > 0) { // pri k > 0 pre j<rf
                 double pom = Math.min(m - x0 - y0, m - ((1 + k)/k) * x0 );
                 zOpt = Math.min(pom, m - (1 + k) * y0);
                 if (x0 == k* y0){
@@ -28,7 +28,7 @@ public class Zopt {
                     System.out.println("Ak x0 < ky0, tak zopt = m − (1 + k) * y0, xopt = ky0 > x0, yopt = y0.");
                 }
                 System.out.println("zOpt = "+zOpt+"\nyOpt = "+yOpt+"\nxOpt = "+xOpt);
-            } else if (k < -1) {
+            } else if (k < -1) { // pri k < -1 pre j<rf
                 zOpt= m-(((1+k)/k) * x0);
                 xOpt=x0;
                 yOpt=x0/k;
@@ -38,7 +38,7 @@ public class Zopt {
                 System.out.println("zOpt = "+zOpt);
                 System.out.println("xOpt = "+xOpt);
                 System.out.println("yOpt = "+yOpt);
-            } else if (-1 < k && k < 0){ // -1 < k < 0
+            } else if (-1 < k && k < 0){ // -1 < k < 0  pre j<rf
                 zOpt=m-(1+k)*y0;
                 xOpt=k*y0;
                 yOpt=y0;
@@ -49,8 +49,8 @@ public class Zopt {
                 System.out.println("xOpt = "+xOpt);
                 System.out.println("yOpt = "+yOpt);
             }
-        } else if(k != -1 && j>rf){
-            if (k > 0) {
+        } else if(k != -1 && j>rf){ // pokial sa k != -1 a zaroven je j>rf
+            if (k > 0) {// pri k > 0 pre j>rf
                 if (z0 == 0) {
                     zOpt = 0;
                     xOpt = (k * m) / (1 + k);
@@ -65,7 +65,7 @@ public class Zopt {
                 System.out.println("zOpt = " + zOpt);
                 System.out.println("xOpt = " + xOpt);
                 System.out.println("yOpt = " + yOpt);
-            } else if (k < -1) {
+            } else if (k < -1) {// pri k < -1 pre j>rf
                 if (y0 <= (1 / (1 + k)) * (m - z0)) {
                     zOpt = z0;
                     yOpt = (1/(1+k))  * (m - z0);
@@ -86,7 +86,7 @@ public class Zopt {
                 System.out.println("zOpt = " + zOpt);
                 System.out.println("xOpt = " + xOpt);
                 System.out.println("yOpt = " + yOpt);
-                } else if (-1 < k && k < 0){ // -1 < k < 0
+                } else if (-1 < k && k < 0){ // -1 < k < 0 pri J>rf
                     if (x0 <= (k / (1 + k)) * (m - z0)) {
                         zOpt = z0;
                         xOpt=(k/(1+k))*(m-z0);
@@ -107,7 +107,7 @@ public class Zopt {
                     System.out.println("yOpt = " + yOpt);
                 }
             }
-        else{ // k = -1 alebo rf <= 0
+        else{ // k = -1
             if (aH == bH) {
                 zOpt = m;
                 System.out.println("Pokiaľ k = -1 a aH = bH ,arbitráž na trhu neexistuje a hodnoty x, y môžu byť zvolené ľubovoľne tak, aby bolo splnené\n" +
