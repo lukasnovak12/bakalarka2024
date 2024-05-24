@@ -65,7 +65,7 @@ public class Vypocty {
 
             // vypocet  J
             double j = HodnotaJ.vypocetAVypisJ(vstupy.getaPociatok(),vstupy.getbPociatok(),vstupy.getaH(),vstupy.getbH(),vstupy.getaD(),vstupy.getbD(),vstupy.getRf());
-            if (j == rf){
+            if (j == rf || j==0){
                 System.out.println(" ");
                 new Vypocty();
             }else {
@@ -90,7 +90,7 @@ public class Vypocty {
                         zOpt = Zopt.vypocetZOpt(k, j, x0, y0, m, z0, rf, vstupy.getaH() / vstupy.getaPociatok(), vstupy.getbH() / vstupy.getbPociatok());
                         System.out.flush();
                         System.setOut(povodnyVystup);
-                    } while (!jeCeleCislo(zOpt.getVysledok3()));//vracia do cyklu naspat. pokial coslo zOpt nebolo cele cislo
+                    } while (!jeCeleCislo(zOpt.getVysledok3()) && !jeCeleCislo(zOpt.getVysledok2()) && !jeCeleCislo(zOpt.getVysledok1()));//vracia do cyklu naspat. pokial coslo zOpt nebolo cele cislo
                     System.out.println("Vygenerované číslo x0: " + x0);//vypis vygenerovanych cisel
                     System.out.println("Vygenerované číslo y0: " + y0);
                     System.out.println("Vygenerované číslo z0: " + z0);
