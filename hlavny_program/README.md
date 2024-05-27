@@ -24,6 +24,8 @@ Pokiaľ budete zadávať nezmyslené hodnoty, program na to upozorní a požiada
 
 Keď budete chcieť zadávať okrem celých čísel aj reálne čísla, je doležité používať desatinnú bodku(.) a nie desatinnú čiarku(,).
 
+Pokiaľ budete zadávať generovanie hodnôt, treba pri počiatočných hodnotách akcie a hodnotách na ktoré pôsobí udalosť H či D(A,B,aH,bH,aD,bD) 
+je treba, aby čísla boli pri najlepšom celé a párne, pretože by program mohol veľmi dlho hladať kombináciu, aby výsledky čísel x0,y0,z0 a m boli celé čísla.
 # Cieľ programu
 
 Cieľom programu je nájsť optimálne riešenia z hľadiska arbitráže optimálne riešenie, tj. také, ktoré umožní vhodnou kúpou/predajom

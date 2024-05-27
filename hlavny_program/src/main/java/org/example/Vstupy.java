@@ -25,9 +25,8 @@ public class Vstupy {
         bH = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej bH:",true,bPociatok);
         bD = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej bD:",true,bPociatok);
         rf = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej rf:",true);
-        m = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej m:",true);
         //otazka, ci chceme alebo nechceme vygenerovat hodnoty pociatocnych investicii v akciach a dlhopisoch
-        System.out.println("Chcete si zadať premenné x0,y0,z0 svoje, alebo chcete aby ich program vygeneroval ?\n" +
+        System.out.println("Chcete si zadať premenné m,x0,y0,z0 svoje, alebo chcete aby ich program vygeneroval ?\n" +
                 "Pokiaľ áno stlačte 'y' pokiaľ nie stlačte 'n'. ");
         input=scanner.next();
 
@@ -37,6 +36,7 @@ public class Vstupy {
         }
 
         if (input.equals("n")) {
+            m = Validacia.validaciaVstupov(scanner, "Zadajte hodnotu premennej m:",true);
             x0 = Validacia.validaciaVstupov(scanner, "Zadajte, koľko finančných prostriedkov máte v čase 0 v akcií A:",false);
             y0 = Validacia.validaciaVstupov(scanner, "Zadajte, koľko koľko finančných prostriedkov máte v čase 0 v akcií B:",false);
             z0 = Validacia.validaciaVstupov(scanner, "Zadajte , koľko si dokážete emitáciou dlhopisov v čase 0 požičať:",false);

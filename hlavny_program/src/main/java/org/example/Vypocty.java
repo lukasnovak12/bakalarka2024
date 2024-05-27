@@ -44,13 +44,12 @@ public class Vypocty {
             //double vysledok2 = (aD  / aH_initial) * x + (bD   / bH_initial) * y + (1 + rf) * z - m;
             x2 =(aD  / aPociatok);
             y2=(bD   / bPociatok);
-
             if (!KontrolaP.kontrolaPodmienok(x, x2, y, y2, rf)){//pokial kontrola podmnienok nepresla zavola metodu vypocty ako v main a program zadavanie zacina znova
                  new Vypocty();
             }
 
             double k = ( (y2 - y) / (x - x2)); // vypocet k
-            k = Math.round(k * 1000.0) / 1000.0;
+            k = Math.round(k * 1000000.0) / 1000000.0;
             System.out.println("K = "+k);
             //zvysne vypocty podla vzorca x = ( bD − bH / aH − aD )y  ==    x = ky
             if (k == -1){
@@ -62,14 +61,12 @@ public class Vypocty {
                 System.out.println("x = " + x);
                 System.out.println("y = " + y);
             }
-
             // vypocet  J
             double j = HodnotaJ.vypocetAVypisJ(vstupy.getaPociatok(),vstupy.getbPociatok(),vstupy.getaH(),vstupy.getbH(),vstupy.getaD(),vstupy.getbD(),vstupy.getRf());
-            if (j == rf || j==0){
+            if (j == rf ){
                 System.out.println(" ");
                 new Vypocty();
             }else {
-
                 //pokial si uzivatel vybral generovanie cisel pre x0,y0,z0 tak sa tento kod uskutocni, v kode je generovanie cisel
                 //nasledna kontrola ci je cislo cele a ukladanie a mazanie terminalu pre rovnake vypisi. aby nebolo treba robit novu metodu pre
                 //zOpt bez vypisov premaze vzdy len vystup z metody a starsi si ulozi
@@ -77,7 +74,22 @@ public class Vypocty {
                 Vysledky zOpt;
                 String vstup = vstupy.getInput();
                 if (vstup.equals("y")) {
+                    //generate pre m
+                    m= ((aH/aPociatok) - (aD/aPociatok) + (bH/bPociatok) - (bD/bPociatok))*10000 ;
+                    m= Math.round(m);
+                    Random random = new Random();
+                    int nahodneCislo = random.nextInt(9 )+1;
+                    m = m * nahodneCislo;
+                    if (m < 0){
+                        m = m * (-1);
+                    }
+                    int pocitadlo=0;
                     do {
+                        if (pocitadlo > 1000){
+                            System.out.println("!!!Program vygeneroval niekoľko stoviek môžností, bohužiaľ ani pri jednej nebolo splnené, aby všetky 4 (m,zOp,xOpt a yOp) hodnoty po " +
+                                    " boli celé čísla!!!");
+                            new Vypocty();
+                        }
                         PrintStream povodnyVystup = System.out;
                         ByteArrayOutputStream ulozenieVystupu = new ByteArrayOutputStream();
                         PrintStream novyVystup = new PrintStream(ulozenieVystupu);
@@ -90,7 +102,9 @@ public class Vypocty {
                         zOpt = Zopt.vypocetZOpt(k, j, x0, y0, m, z0, rf, vstupy.getaH() / vstupy.getaPociatok(), vstupy.getbH() / vstupy.getbPociatok());
                         System.out.flush();
                         System.setOut(povodnyVystup);
-                    } while (!jeCeleCislo(zOpt.getVysledok3()) && !jeCeleCislo(zOpt.getVysledok2()) && !jeCeleCislo(zOpt.getVysledok1()));//vracia do cyklu naspat. pokial coslo zOpt nebolo cele cislo
+                        pocitadlo++;
+                    } while (!jeCeleCislo(zOpt.getVysledok3()) || !jeCeleCislo(zOpt.getVysledok2()) || !jeCeleCislo(zOpt.getVysledok1()));//vracia do cyklu naspat. pokial coslo zOpt nebolo cele cislo
+                    System.out.println("Vygenerované číslo m: " + m);
                     System.out.println("Vygenerované číslo x0: " + x0);//vypis vygenerovanych cisel
                     System.out.println("Vygenerované číslo y0: " + y0);
                     System.out.println("Vygenerované číslo z0: " + z0);
@@ -100,20 +114,19 @@ public class Vypocty {
                 zX = x * zOpt.getVysledok3();
                 zY = y * zOpt.getVysledok3();
                 Vysledky vysledky = Zisk.VypocetZisk(x, zX, y, zY, aH, bH, aPociatok, bPociatok, zOpt.getVysledok3());
-                System.out.println("Výsledok lavej strany rovnice(udalosť H): " + vysledky.getVysledok1());
-                System.out.println("Výsledok Z zo zisku z lavej strany rovnice(udalosť H): " + vysledky.getVysledok2());
+                System.out.println("Výsledok lavej strany rovnice(udalosť H) arbitrážneho zisku: " + vysledky.getVysledok1());
+                System.out.println("Výsledok Z zo zisku z lavej strany rovnice(udalosť H) arbitrážneho zisku: " + vysledky.getVysledok2());
                 vysledky = Zisk.VypocetZisk(x, zX, y, zY, aD, bD, aPociatok, bPociatok, zOpt.getVysledok3());
-                System.out.println("Výsledok zisku z pravej strany rovnice(udalosť D): " + vysledky.getVysledok1());
-                System.out.println("Výsledok Z zo zisku z pravej strany rovnice(udalosť D): " + vysledky.getVysledok2());
-
+                System.out.println("Výsledok zisku z pravej strany rovnice(udalosť D) arbitrážneho zisku: " + vysledky.getVysledok1());
+                System.out.println("Výsledok Z zo zisku z pravej strany rovnice(udalosť D arbitrážneho zisku): " + vysledky.getVysledok2());
+                System.out.println(zOpt.getVysledok3() + " " + zOpt.getVysledok2() + " " + zOpt.getVysledok1());
             }
             System.out.print("Chcete zadať iný príklad? (´y´ pre áno / ´n´ pre nie): ");
             String response = scanner.next();
             repeat = response.equalsIgnoreCase("y");
-
         } while (repeat);
         }
-    public static boolean jeCeleCislo(double number) {//kontroluje ci generator vygeneroval take cisla, kedy sa zopt rovna celemu cislu.
+    public static boolean jeCeleCislo(double number) {//kontroluje ci je cele cislo .
         return number == (int) number;
     }
 

@@ -5,8 +5,8 @@ public class HodnotaJ {
     public static double vypocetAVypisJ(double aPociatok, double bPociatok, double aH, double bH, double aD, double bD, double rf) {
         double x= (aH  / aPociatok);
         double y= (bH   / bPociatok);
-        double x2 =(aD  / aPociatok);
-        double y2=(bD   / bPociatok);
+        double x2= (aD  / aPociatok);
+        double y2= (bD   / bPociatok);
         double j = ((x * y2 - x2 * y - (x - x2) - (y2 - y)) / (x - x2 + y2 - y)); //vypocet j
         j = Math.round(j * 10000.0) / 10000.0;//zaokruhlenie
         System.out.println("J = "+j);

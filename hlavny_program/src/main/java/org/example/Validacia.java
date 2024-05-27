@@ -26,7 +26,7 @@ public class Validacia {
             } catch (NumberFormatException e) {
                 System.out.println("Neplatný vstup! Zadajte číslo.");
             }
-        } while (!validnyVstup);//opakuje pokial validnyVstup =true
+        } while (!validnyVstup);//opakuje pokial validnyVstup = true
 
         return input;
     }
