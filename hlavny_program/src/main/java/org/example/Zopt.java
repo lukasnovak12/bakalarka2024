@@ -32,8 +32,8 @@ public class Zopt {
                 zOpt= m-(((1+k)/k) * x0);
                 xOpt=x0;
                 yOpt=x0/k;
-                System.out.println("Investor dokáže navíšit svoj arbitrážny zisk prostredníctvom penažných " +
-                        "prostriedkov získanych z predaja akcie A v čase 0 . V prípade, že nieje schopný využiť vzniknutú " +
+                System.out.println("Investor dokáže navíšit svoj arbitrážny zisk prostredníctvom penažných \n" +
+                        "prostriedkov získanych z predaja akcie A v čase 0 . V prípade, že nieje schopný využiť vzniknutú \n" +
                         "arbitrážnu príležitost, pretože nevlastní žiadne akcie A v čase  0 ,ktoré mohol predať, jeho zisk bude rovný rfm.");
                 System.out.println("zOpt = "+zOpt);
                 System.out.println("xOpt = "+xOpt);
@@ -42,9 +42,9 @@ public class Zopt {
                 zOpt=m-(1+k)*y0;
                 xOpt=k*y0;
                 yOpt=y0;
-                System.out.println("Investor dokáže navíšit svoj arbitrážny zisk prostredníctvom penažných" +
-                        "prostriedkov získanych z predaja akcie B v čase 0 . V prípade, že nieje schopný využiť vzniknutú" +
-                        "arbitrážnu príležitost, pretože nevlastní žiadne akcie B v čase  0, ktoré mohol predať, jeho zisk bude rovný rfm");
+                System.out.println("Investor dokáže navíšit svoj arbitrážny zisk prostredníctvom penažných\n" +
+                        " prostriedkov získanych z predaja akcie B v čase 0 . V prípade, že nieje schopný využiť vzniknutú\n" +
+                        " arbitrážnu príležitost, pretože nevlastní žiadne akcie B v čase  0, ktoré mohol predať, jeho zisk bude rovný rfm");
                 System.out.println("zOpt = "+zOpt);
                 System.out.println("xOpt = "+xOpt);
                 System.out.println("yOpt = "+yOpt);
@@ -55,13 +55,13 @@ public class Zopt {
                     zOpt = 0;
                     xOpt = (k * m) / (1 + k);
                     yOpt = m / (1 + k);
-                    System.out.println("Ak k>0 pri k != -1 && j>rf, a z0 = 0,  investor nedokáže" +
+                    System.out.println("Ak k>0 pri k != -1 && j>rf, a z0 = 0,  investor nedokáže\n" +
                             " svoj arbitrážny zisk navýšiť predajom vypísaných dlhopisov v čase 0 kedže žiadne nevlastníl. ");
                 }else if (z0 < 0) {
                     zOpt = z0;
                     xOpt = (k / (1 + k)) * (m - z0);
                     yOpt = (1 / (1 + k)) * (m - z0);
-                System.out.println("Ak k>0 pri k != -1 && j>rf, potom maximom je z0 < 0, a pre investora je podstatné to, či dokáže" +
+                System.out.println("Ak k>0 pri k != -1 && j>rf, potom maximom je z0 < 0, a pre investora je podstatné to, či dokáže\n" +
                         "svoj arbitrážny zisk navýšiť predajom vypísaných dlhopisov v čase 0 . ");}
                 System.out.println("zOpt = " + zOpt);
                 System.out.println("xOpt = " + xOpt);
@@ -71,13 +71,12 @@ public class Zopt {
                     zOpt = z0;
                     yOpt = (1/(1+k))  * (m - z0);
                     xOpt = k * yOpt;
-                    System.out.println("Predpokladajme , že y0 ≤ ( 1/1+k)*(m − z0) < 0 . Potom maximom je z0 a preto zopt = z0,xOpt = k * yOpt, yOpt = (1/(1+k))  * (m - z0)");
-
+                    System.out.println("Predpokladajme , že y0 ≤ ( 1/1+k)*(m − z0) < 0 . Potom maximom je z0 a preto\n zopt = z0,xOpt = k * yOpt, yOpt = (1/(1+k))  * (m - z0)");
                 } else if ((1 / (1 + k)) * (m - z0) < y0 && y0 <= 0){
                     zOpt = m - (1 + k) * y0;
                     xOpt = k * y0;
                     yOpt=y0;
-                    System.out.println("Predpokladajme , že  ( 1/1+k)*(m − z0) < y0 <= 0 ,tak maximom  je v tomto prípade z0= m − (1 + k)y0, xOpt = k * y0, yOpt=y0. ");
+                    System.out.println("Predpokladajme , že  ( 1/1+k)*(m − z0) < y0 <= 0 ,tak maximom  je v tomto\n prípade z0= m − (1 + k)y0, xOpt = k * y0, yOpt=y0. ");
                     }
                 else if(y0 == 0){
                     xOpt= 0;
@@ -113,7 +112,8 @@ public class Zopt {
                 zOpt = m;
                 xOpt = -y0;
                 yOpt = y0;
-                System.out.println("Pokiaľ k = -1 a aH = bH ,arbitráž na trhu neexistuje a hodnoty x, y môžu byť zvolené ľubovoľne tak, aby bolo splnené\n" +
+                System.out.println("Pokiaľ k = -1 a aH = bH ,arbitráž na trhu\n " +
+                        "neexistuje a hodnoty x, y môžu byť zvolené ľubovoľne tak, aby bolo splnené" +
                         "x = −y. z = m");
                 System.out.println("zOpt = " + zOpt);
                 System.out.println("Naša voľba xOpt = " + xOpt);

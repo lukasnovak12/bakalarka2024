@@ -5,7 +5,6 @@ public class Vysledky {
     private final double vysledok2;
     private final double vysledok3;
 
-
     public Vysledky(double vysledok1, double vysledok2, double vysledok3) {//return 3 vysledkov zo zopt, kedze je potrebne vratit 3 hodnoty
         this.vysledok1 = vysledok1;
         this.vysledok2 = vysledok2;

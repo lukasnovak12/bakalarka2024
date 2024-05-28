@@ -8,11 +8,10 @@ public class HodnotaJ {
         double x2= (aD  / aPociatok);
         double y2= (bD   / bPociatok);
         double j = ((x * y2 - x2 * y - (x - x2) - (y2 - y)) / (x - x2 + y2 - y)); //vypocet j
-        j = Math.round(j * 10000.0) / 10000.0;//zaokruhlenie
+        j = Math.round(j * 1000000.0) / 1000000.0;//zaokruhlenie
         System.out.println("J = "+j);
 
         if(rf > j && j > 0 || j < 0 && 0 < rf){//kontrola vetvy stromu, ci je 0 < J < rf alebo J < 0 < rf
-
             if(j > 0){
                 System.out.println("Výsledok J je síce väčší ako 0 ale nieje väčší ako úroková miera\n" +
                         "dlhopisu preto maximalizujeme z = m. Poprípade keď vlastníme nejaké akcie A,B v čase 0 ,\n " +
@@ -42,7 +41,6 @@ public class HodnotaJ {
                     "môže byť ľubovoľný, pretože pre ktorúkoľvek jeho hodnotu bude zisk investora rovný\n" +
                     "práve Jm = rf m p.j. V takomto prípade arbitráž neexistuje a bezriziková úroková sadzba\n" +
                     "dlhopisu je správne (bezarbitrážne) určená.");
-
         }
         return j;
     }
