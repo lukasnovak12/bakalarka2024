@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class Validacia {
 
-    public static double validaciaVstupov(Scanner scanner, String message, boolean moznost,double m, double... pociatok) {
+    public static double validaciaVstupov(Scanner scanner, String sprava, boolean moznost, double m, double... pociatok) {
         double input=0;
         boolean validnyVstup = false;
         double initial = pociatok.length > 0 ? pociatok[0] : 0;//dobrovolny argument v metode, ktory zarucuje aby buduca hodnota akcie neblo 2* hodnoty povodnej ceny akcie
         do {
-            System.out.println(message);
+            System.out.println(sprava);
             String vstup = scanner.next();
             try {
                 input = Double.parseDouble(vstup);
